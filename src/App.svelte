@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MeterProps } from './@types/index'
+  import type { MeterProps } from './@types'
   import SpeedMeter from './components/SpeedMeter.svelte'
 
 	const meterProps: MeterProps = {

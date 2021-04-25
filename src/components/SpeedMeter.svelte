@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MeterProps, PickType, StyleProps } from '../@types/index'
+  import type { MeterProps, PickType, StyleProps } from '../@types'
   
   /** props */
   export let height:PickType<MeterProps, 'height'> = 200
@@ -69,7 +69,7 @@
     top: 50%;
     left: 0;
     height: var(--scale-height);
-    width: 5%;
+    width: var(--guage-width);
     background: #ffffff;
     transform-origin: var(--scale-origin);
     transform: rotate(calc(var(--scale-deg) * var(--guage-tick) + var(--offset-deg)));
@@ -86,7 +86,7 @@
     top: 50%;
     left: 0;
     height: 2px;
-    width: 55%;
+    width: 56%;
     background: #ff3333;
     transform-origin: var(--scale-origin);
     transform: rotate(var(--meter-deg));
@@ -124,9 +124,12 @@
     <div class="outline">
       <ol>
         {#each Array(scales + 1) as _,i }
-        <li style="--guage-tick:{i}">
-          {#if i % 3 === 0}<span>{i * 10}</span>{/if}
-        </li>
+        {#if i % 3 === 0}
+        <li style="--guage-width:5%;--guage-tick:{i};">
+          <span>{i * 10}</span></li>
+        {:else}
+        <li style="--guage-width:3%;--guage-tick:{i};"></li>
+        {/if}
         {/each}
       </ol>
       <aside class="needle"></aside>
