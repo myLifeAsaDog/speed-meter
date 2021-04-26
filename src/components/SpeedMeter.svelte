@@ -78,8 +78,10 @@
     position: relative;
     top: -0.5em;
     left: 30px;
+    display: inline-block;
     font-weight: bold;
     color: #ffffff;
+    transform: rotate(calc(-1 * (var(--scale-deg) * var(--guage-tick) + var(--offset-deg))));
   }
   .speedMeter .outline .needle {
     position: absolute;
