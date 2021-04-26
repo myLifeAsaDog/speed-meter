@@ -14,14 +14,10 @@
   export let guageLimit:PickType<MeterProps, 'guageLimit'> = 100
 
   /** constants */
-  const OUTLINE_BORDER:number = 4;
-  const SCALE_HEIGHT:number = 2; 
+  const OUTLINE_BORDER:number = 4
+  const SCALE_HEIGHT:number = 2
   const GUAGE_RANGE = guageEnd - guageStart
   const GUAGE_COEFFICIENT = guageLimit / 100
-
-  $: {
-    styles['meter-deg'] = `${(GUAGE_RANGE / 100) * currentValue + guageStart}deg`
-  }
 
   /** CSS Variables */
   const styles:StyleProps = {
@@ -33,9 +29,15 @@
     'scale-height': `${SCALE_HEIGHT}px`,
     'scale-origin': `${guageHeight / 2}px 0px`,
     'meter-deg': '90deg'
-	};
-	
-	$:cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(';');
+  }
+
+  /** Reactive variables */
+  let cssVarStyles
+
+  $: {
+    styles['meter-deg'] = `${(GUAGE_RANGE / 100) * currentValue + guageStart}deg`
+    cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(';')
+  }
 </script>
 
 <style>

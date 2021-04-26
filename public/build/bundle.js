@@ -441,7 +441,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (132:8) {:else}
+    // (134:8) {:else}
     function create_else_block(ctx) {
     	let li;
 
@@ -451,7 +451,7 @@ var app = (function () {
     			set_style(li, "--guage-width", "3%");
     			set_style(li, "--guage-tick", /*i*/ ctx[16]);
     			attr_dev(li, "class", "svelte-eatgob");
-    			add_location(li, file$1, 132, 8, 3556);
+    			add_location(li, file$1, 134, 8, 3603);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -466,14 +466,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(132:8) {:else}",
+    		source: "(134:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (129:8) {#if i % guageInterval === 0}
+    // (131:8) {#if i % guageInterval === 0}
     function create_if_block(ctx) {
     	let li;
     	let span;
@@ -486,11 +486,11 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "svelte-eatgob");
-    			add_location(span, file$1, 130, 10, 3489);
+    			add_location(span, file$1, 132, 10, 3536);
     			set_style(li, "--guage-width", "5%");
     			set_style(li, "--guage-tick", /*i*/ ctx[16]);
     			attr_dev(li, "class", "svelte-eatgob");
-    			add_location(li, file$1, 129, 8, 3430);
+    			add_location(li, file$1, 131, 8, 3477);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -509,14 +509,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(129:8) {#if i % guageInterval === 0}",
+    		source: "(131:8) {#if i % guageInterval === 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (128:8) {#each Array(guageScales + 1) as _,i }
+    // (130:8) {#each Array(guageScales + 1) as _,i }
     function create_each_block(ctx) {
     	let if_block_anchor;
 
@@ -560,7 +560,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(128:8) {#each Array(guageScales + 1) as _,i }",
+    		source: "(130:8) {#each Array(guageScales + 1) as _,i }",
     		ctx
     	});
 
@@ -609,20 +609,20 @@ var app = (function () {
     			span = element("span");
     			t4 = text(/*guageUnits*/ ctx[1]);
     			attr_dev(ol, "class", "svelte-eatgob");
-    			add_location(ol, file$1, 126, 6, 3329);
+    			add_location(ol, file$1, 128, 6, 3376);
     			attr_dev(aside, "class", "needle svelte-eatgob");
-    			add_location(aside, file$1, 136, 6, 3661);
+    			add_location(aside, file$1, 138, 6, 3708);
     			attr_dev(span, "class", "svelte-eatgob");
-    			add_location(span, file$1, 139, 8, 3782);
+    			add_location(span, file$1, 141, 8, 3829);
     			attr_dev(p, "class", "value svelte-eatgob");
-    			add_location(p, file$1, 137, 6, 3699);
+    			add_location(p, file$1, 139, 6, 3746);
     			attr_dev(div0, "class", "outline svelte-eatgob");
-    			add_location(div0, file$1, 125, 4, 3300);
+    			add_location(div0, file$1, 127, 4, 3347);
     			attr_dev(div1, "class", "speedMeter svelte-eatgob");
-    			add_location(div1, file$1, 124, 2, 3270);
+    			add_location(div1, file$1, 126, 2, 3317);
     			attr_dev(div2, "class", "speedMeterWrapper svelte-eatgob");
     			attr_dev(div2, "style", /*cssVarStyles*/ ctx[5]);
-    			add_location(div2, file$1, 123, 0, 3212);
+    			add_location(div2, file$1, 125, 0, 3259);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -701,7 +701,6 @@ var app = (function () {
     const SCALE_HEIGHT = 2;
 
     function instance$1($$self, $$props, $$invalidate) {
-    	let cssVarStyles;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("SpeedMeter", slots, []);
     	
@@ -729,6 +728,9 @@ var app = (function () {
     		"scale-origin": `${guageHeight / 2}px 0px`,
     		"meter-deg": "90deg"
     	};
+
+    	/** Reactive variables */
+    	let cssVarStyles;
 
     	const writable_props = [
     		"guageHeight",
@@ -798,14 +800,11 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*currentValue, guageStart*/ 520) {
+    		if ($$self.$$.dirty & /*currentValue, guageStart, styles*/ 4616) {
     			{
     				$$invalidate(12, styles["meter-deg"] = `${GUAGE_RANGE / 100 * currentValue + guageStart}deg`, styles);
+    				$$invalidate(5, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
     			}
-    		}
-
-    		if ($$self.$$.dirty & /*styles*/ 4096) {
-    			$$invalidate(5, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
     		}
     	};
 
