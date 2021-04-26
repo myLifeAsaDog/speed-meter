@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { MeterProps } from './@types'
-  import SpeedMeter from './components/SpeedMeter.svelte'
+	import type { MeterProps } from './@types'
+	import SpeedMeter from './components/SpeedMeter.svelte'
 
 	const meterProps: MeterProps = {
 		height: 300,
@@ -19,6 +19,7 @@
 		font-family: sans-serif;
 		font-size: 16px;
 		background: #aaaaaa;
+		padding: 40px;
 	}
 </style>
 

@@ -43,6 +43,8 @@
   .speedMeterWrapper {
     height: var(--height);
     width: var(--width);
+    border: solid 8px #444444;
+    border-radius: 50%;
   }
   .speedMeter {
     position: absolute;
