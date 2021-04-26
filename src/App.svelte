@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { MeterProps } from './@types'
+	import type { MeterProps, PickType } from './@types'
 	import SpeedMeter from './components/SpeedMeter.svelte'
 
 	const meterProps: MeterProps = {
@@ -7,7 +7,17 @@
 		width: 300,
 		start: -30,
 		end: 210,
-		scales: 27
+		scales: 27,
+		unitsLabel: 'km/h',
+		guageInterval: 3,
+		currentValue: 0,
+	}
+
+	/** value changes */
+	export let meterValue:PickType<MeterProps, 'currentValue'> = 0
+
+	$: {
+		meterProps['currentValue'] = meterValue
 	}
 </script>
 
@@ -25,4 +35,9 @@
 
 <main>
 	<SpeedMeter {...meterProps} />
+
+	<section>
+		<label for="01">現在値(0-100固定)</label>
+		<input id="01" type="range" min="0" max="100" bind:value={meterValue}>
+	</section>
 </main>

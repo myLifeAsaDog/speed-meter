@@ -436,12 +436,12 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[10] = list[i];
-    	child_ctx[12] = i;
+    	child_ctx[11] = list[i];
+    	child_ctx[13] = i;
     	return child_ctx;
     }
 
-    // (127:8) {:else}
+    // (129:8) {:else}
     function create_else_block(ctx) {
     	let li;
 
@@ -449,9 +449,9 @@ var app = (function () {
     		c: function create() {
     			li = element("li");
     			set_style(li, "--guage-width", "3%");
-    			set_style(li, "--guage-tick", /*i*/ ctx[12]);
+    			set_style(li, "--guage-tick", /*i*/ ctx[13]);
     			attr_dev(li, "class", "svelte-1j8r02j");
-    			add_location(li, file$1, 127, 8, 3224);
+    			add_location(li, file$1, 129, 8, 3326);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -465,18 +465,18 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(127:8) {:else}",
+    		source: "(129:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (124:8) {#if i % 3 === 0}
+    // (126:8) {#if i % guageInterval === 0}
     function create_if_block(ctx) {
     	let li;
     	let span;
-    	let t_value = /*i*/ ctx[12] * 10 + "";
+    	let t_value = /*i*/ ctx[13] * 10 + "";
     	let t;
 
     	const block = {
@@ -485,11 +485,11 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "svelte-1j8r02j");
-    			add_location(span, file$1, 125, 10, 3171);
+    			add_location(span, file$1, 127, 10, 3273);
     			set_style(li, "--guage-width", "5%");
-    			set_style(li, "--guage-tick", /*i*/ ctx[12]);
+    			set_style(li, "--guage-tick", /*i*/ ctx[13]);
     			attr_dev(li, "class", "svelte-1j8r02j");
-    			add_location(li, file$1, 124, 8, 3112);
+    			add_location(li, file$1, 126, 8, 3214);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -505,19 +505,19 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(124:8) {#if i % 3 === 0}",
+    		source: "(126:8) {#if i % guageInterval === 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (123:8) {#each Array(scales + 1) as _,i }
+    // (125:8) {#each Array(scales + 1) as _,i }
     function create_each_block(ctx) {
     	let if_block_anchor;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*i*/ ctx[12] % 3 === 0) return create_if_block;
+    		if (/*i*/ ctx[13] % /*guageInterval*/ ctx[2] === 0) return create_if_block;
     		return create_else_block;
     	}
 
@@ -533,7 +533,17 @@ var app = (function () {
     			if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			}
+    		},
     		d: function destroy(detaching) {
     			if_block.d(detaching);
     			if (detaching) detach_dev(if_block_anchor);
@@ -544,7 +554,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(123:8) {#each Array(scales + 1) as _,i }",
+    		source: "(125:8) {#each Array(scales + 1) as _,i }",
     		ctx
     	});
 
@@ -560,15 +570,12 @@ var app = (function () {
     	let aside;
     	let t1;
     	let p;
-    	let t2_value = Math.floor(/*meterValue*/ ctx[0] * 2.7) + "";
+    	let t2_value = Math.floor(/*currentValue*/ ctx[3] * 2.7) + "";
     	let t2;
     	let t3;
     	let span;
-    	let t5;
-    	let input;
-    	let mounted;
-    	let dispose;
-    	let each_value = Array(/*scales*/ ctx[1] + 1);
+    	let t4;
+    	let each_value = Array(/*scales*/ ctx[0] + 1);
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -594,28 +601,22 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			span = element("span");
-    			span.textContent = "km/h";
-    			t5 = space();
-    			input = element("input");
+    			t4 = text(/*unitsLabel*/ ctx[1]);
     			attr_dev(ol, "class", "svelte-1j8r02j");
-    			add_location(ol, file$1, 121, 6, 3028);
+    			add_location(ol, file$1, 123, 6, 3118);
     			attr_dev(aside, "class", "needle svelte-1j8r02j");
-    			add_location(aside, file$1, 131, 6, 3329);
+    			add_location(aside, file$1, 133, 6, 3431);
     			attr_dev(span, "class", "svelte-1j8r02j");
-    			add_location(span, file$1, 134, 8, 3434);
+    			add_location(span, file$1, 136, 8, 3538);
     			attr_dev(p, "class", "value svelte-1j8r02j");
-    			add_location(p, file$1, 132, 6, 3367);
+    			add_location(p, file$1, 134, 6, 3469);
     			attr_dev(div0, "class", "outline svelte-1j8r02j");
-    			add_location(div0, file$1, 120, 4, 2999);
+    			add_location(div0, file$1, 122, 4, 3089);
     			attr_dev(div1, "class", "speedMeter svelte-1j8r02j");
-    			add_location(div1, file$1, 119, 2, 2969);
+    			add_location(div1, file$1, 121, 2, 3059);
     			attr_dev(div2, "class", "speedMeterWrapper svelte-1j8r02j");
-    			attr_dev(div2, "style", /*cssVarStyles*/ ctx[2]);
-    			add_location(div2, file$1, 118, 0, 2911);
-    			attr_dev(input, "type", "range");
-    			attr_dev(input, "min", "0");
-    			attr_dev(input, "max", "100");
-    			add_location(input, file$1, 139, 0, 3550);
+    			attr_dev(div2, "style", /*cssVarStyles*/ ctx[4]);
+    			add_location(div2, file$1, 120, 0, 3001);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -637,22 +638,11 @@ var app = (function () {
     			append_dev(p, t2);
     			append_dev(p, t3);
     			append_dev(p, span);
-    			insert_dev(target, t5, anchor);
-    			insert_dev(target, input, anchor);
-    			set_input_value(input, /*meterValue*/ ctx[0]);
-
-    			if (!mounted) {
-    				dispose = [
-    					listen_dev(input, "change", /*input_change_input_handler*/ ctx[8]),
-    					listen_dev(input, "input", /*input_change_input_handler*/ ctx[8])
-    				];
-
-    				mounted = true;
-    			}
+    			append_dev(span, t4);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*scales*/ 2) {
-    				each_value = Array(/*scales*/ ctx[1] + 1);
+    			if (dirty & /*guageInterval, scales*/ 5) {
+    				each_value = Array(/*scales*/ ctx[0] + 1);
     				validate_each_argument(each_value);
     				let i;
 
@@ -675,14 +665,11 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*meterValue*/ 1 && t2_value !== (t2_value = Math.floor(/*meterValue*/ ctx[0] * 2.7) + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*currentValue*/ 8 && t2_value !== (t2_value = Math.floor(/*currentValue*/ ctx[3] * 2.7) + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*unitsLabel*/ 2) set_data_dev(t4, /*unitsLabel*/ ctx[1]);
 
-    			if (dirty & /*cssVarStyles*/ 4) {
-    				attr_dev(div2, "style", /*cssVarStyles*/ ctx[2]);
-    			}
-
-    			if (dirty & /*meterValue*/ 1) {
-    				set_input_value(input, /*meterValue*/ ctx[0]);
+    			if (dirty & /*cssVarStyles*/ 16) {
+    				attr_dev(div2, "style", /*cssVarStyles*/ ctx[4]);
     			}
     		},
     		i: noop,
@@ -690,10 +677,6 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t5);
-    			if (detaching) detach_dev(input);
-    			mounted = false;
-    			run_all(dispose);
     		}
     	};
 
@@ -708,8 +691,8 @@ var app = (function () {
     	return block;
     }
 
-    const outlineBorder = 4;
-    const scaleHeight = 2;
+    const OUTLINE_BORDER = 4;
+    const SCALE_HEIGHT = 2;
 
     function instance$1($$self, $$props, $$invalidate) {
     	let cssVarStyles;
@@ -721,39 +704,47 @@ var app = (function () {
     	let { start = 0 } = $$props;
     	let { end = 100 } = $$props;
     	let { scales = 10 } = $$props;
-    	const range = end - start;
-    	let { meterValue = 0 } = $$props;
+    	let { unitsLabel = "mph" } = $$props;
+    	let { guageInterval = 10 } = $$props;
+    	let { currentValue = 0 } = $$props;
+    	const GUAGE_RANGE = end - start;
 
     	/** CSS Variables */
     	const styles = {
     		"height": `${height}px`,
     		"width": `${width}px`,
-    		"scale-deg": `${range / scales}deg`,
+    		"scale-deg": `${GUAGE_RANGE / scales}deg`,
     		"offset-deg": `${start}deg`,
-    		"outline-border": `${outlineBorder}px`,
-    		"scale-height": `${scaleHeight}px`,
+    		"outline-border": `${OUTLINE_BORDER}px`,
+    		"scale-height": `${SCALE_HEIGHT}px`,
     		"scale-origin": `${height / 2}px 0px`,
     		"meter-deg": "90deg"
     	};
 
-    	const writable_props = ["height", "width", "start", "end", "scales", "meterValue"];
+    	const writable_props = [
+    		"height",
+    		"width",
+    		"start",
+    		"end",
+    		"scales",
+    		"unitsLabel",
+    		"guageInterval",
+    		"currentValue"
+    	];
 
     	Object_1.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<SpeedMeter> was created with unknown prop '${key}'`);
     	});
 
-    	function input_change_input_handler() {
-    		meterValue = to_number(this.value);
-    		$$invalidate(0, meterValue);
-    	}
-
     	$$self.$$set = $$props => {
-    		if ("height" in $$props) $$invalidate(3, height = $$props.height);
-    		if ("width" in $$props) $$invalidate(4, width = $$props.width);
-    		if ("start" in $$props) $$invalidate(5, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(6, end = $$props.end);
-    		if ("scales" in $$props) $$invalidate(1, scales = $$props.scales);
-    		if ("meterValue" in $$props) $$invalidate(0, meterValue = $$props.meterValue);
+    		if ("height" in $$props) $$invalidate(5, height = $$props.height);
+    		if ("width" in $$props) $$invalidate(6, width = $$props.width);
+    		if ("start" in $$props) $$invalidate(7, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(8, end = $$props.end);
+    		if ("scales" in $$props) $$invalidate(0, scales = $$props.scales);
+    		if ("unitsLabel" in $$props) $$invalidate(1, unitsLabel = $$props.unitsLabel);
+    		if ("guageInterval" in $$props) $$invalidate(2, guageInterval = $$props.guageInterval);
+    		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
     	};
 
     	$$self.$capture_state = () => ({
@@ -762,22 +753,26 @@ var app = (function () {
     		start,
     		end,
     		scales,
-    		outlineBorder,
-    		scaleHeight,
-    		range,
-    		meterValue,
+    		unitsLabel,
+    		guageInterval,
+    		currentValue,
+    		OUTLINE_BORDER,
+    		SCALE_HEIGHT,
+    		GUAGE_RANGE,
     		styles,
     		cssVarStyles
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("height" in $$props) $$invalidate(3, height = $$props.height);
-    		if ("width" in $$props) $$invalidate(4, width = $$props.width);
-    		if ("start" in $$props) $$invalidate(5, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(6, end = $$props.end);
-    		if ("scales" in $$props) $$invalidate(1, scales = $$props.scales);
-    		if ("meterValue" in $$props) $$invalidate(0, meterValue = $$props.meterValue);
-    		if ("cssVarStyles" in $$props) $$invalidate(2, cssVarStyles = $$props.cssVarStyles);
+    		if ("height" in $$props) $$invalidate(5, height = $$props.height);
+    		if ("width" in $$props) $$invalidate(6, width = $$props.width);
+    		if ("start" in $$props) $$invalidate(7, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(8, end = $$props.end);
+    		if ("scales" in $$props) $$invalidate(0, scales = $$props.scales);
+    		if ("unitsLabel" in $$props) $$invalidate(1, unitsLabel = $$props.unitsLabel);
+    		if ("guageInterval" in $$props) $$invalidate(2, guageInterval = $$props.guageInterval);
+    		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
+    		if ("cssVarStyles" in $$props) $$invalidate(4, cssVarStyles = $$props.cssVarStyles);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -785,27 +780,28 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*meterValue, start*/ 33) {
+    		if ($$self.$$.dirty & /*currentValue, start*/ 136) {
     			{
-    				$$invalidate(7, styles["meter-deg"] = `${range / 100 * meterValue + start}deg`, styles);
+    				$$invalidate(9, styles["meter-deg"] = `${GUAGE_RANGE / 100 * currentValue + start}deg`, styles);
     			}
     		}
 
-    		if ($$self.$$.dirty & /*styles*/ 128) {
-    			$$invalidate(2, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
+    		if ($$self.$$.dirty & /*styles*/ 512) {
+    			$$invalidate(4, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
     		}
     	};
 
     	return [
-    		meterValue,
     		scales,
+    		unitsLabel,
+    		guageInterval,
+    		currentValue,
     		cssVarStyles,
     		height,
     		width,
     		start,
     		end,
-    		styles,
-    		input_change_input_handler
+    		styles
     	];
     }
 
@@ -814,12 +810,14 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			height: 3,
-    			width: 4,
-    			start: 5,
-    			end: 6,
-    			scales: 1,
-    			meterValue: 0
+    			height: 5,
+    			width: 6,
+    			start: 7,
+    			end: 8,
+    			scales: 0,
+    			unitsLabel: 1,
+    			guageInterval: 2,
+    			currentValue: 3
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -870,11 +868,27 @@ var app = (function () {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get meterValue() {
+    	get unitsLabel() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set meterValue(value) {
+    	set unitsLabel(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get guageInterval() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set guageInterval(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get currentValue() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set currentValue(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -885,8 +899,15 @@ var app = (function () {
     function create_fragment(ctx) {
     	let main;
     	let speedmeter;
+    	let t0;
+    	let section;
+    	let label;
+    	let t2;
+    	let input;
     	let current;
-    	const speedmeter_spread_levels = [/*meterProps*/ ctx[0]];
+    	let mounted;
+    	let dispose;
+    	const speedmeter_spread_levels = [/*meterProps*/ ctx[1]];
     	let speedmeter_props = {};
 
     	for (let i = 0; i < speedmeter_spread_levels.length; i += 1) {
@@ -899,7 +920,21 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			create_component(speedmeter.$$.fragment);
-    			add_location(main, file, 23, 0, 366);
+    			t0 = space();
+    			section = element("section");
+    			label = element("label");
+    			label.textContent = "現在値(0-100固定)";
+    			t2 = space();
+    			input = element("input");
+    			attr_dev(label, "for", "01");
+    			add_location(label, file, 35, 2, 595);
+    			attr_dev(input, "id", "01");
+    			attr_dev(input, "type", "range");
+    			attr_dev(input, "min", "0");
+    			attr_dev(input, "max", "100");
+    			add_location(input, file, 36, 2, 634);
+    			add_location(section, file, 34, 1, 583);
+    			add_location(main, file, 31, 0, 542);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -907,14 +942,33 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
     			mount_component(speedmeter, main, null);
+    			append_dev(main, t0);
+    			append_dev(main, section);
+    			append_dev(section, label);
+    			append_dev(section, t2);
+    			append_dev(section, input);
+    			set_input_value(input, /*meterValue*/ ctx[0]);
     			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input, "change", /*input_change_input_handler*/ ctx[2]),
+    					listen_dev(input, "input", /*input_change_input_handler*/ ctx[2])
+    				];
+
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, [dirty]) {
-    			const speedmeter_changes = (dirty & /*meterProps*/ 1)
-    			? get_spread_update(speedmeter_spread_levels, [get_spread_object(/*meterProps*/ ctx[0])])
+    			const speedmeter_changes = (dirty & /*meterProps*/ 2)
+    			? get_spread_update(speedmeter_spread_levels, [get_spread_object(/*meterProps*/ ctx[1])])
     			: {};
 
     			speedmeter.$set(speedmeter_changes);
+
+    			if (dirty & /*meterValue*/ 1) {
+    				set_input_value(input, /*meterValue*/ ctx[0]);
+    			}
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -928,6 +982,8 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
     			destroy_component(speedmeter);
+    			mounted = false;
+    			run_all(dispose);
     		}
     	};
 
@@ -952,23 +1008,53 @@ var app = (function () {
     		width: 300,
     		start: -30,
     		end: 210,
-    		scales: 27
+    		scales: 27,
+    		unitsLabel: "km/h",
+    		guageInterval: 3,
+    		currentValue: 0
     	};
 
-    	const writable_props = [];
+    	let { meterValue = 0 } = $$props;
+    	const writable_props = ["meterValue"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({ SpeedMeter, meterProps });
-    	return [meterProps];
+    	function input_change_input_handler() {
+    		meterValue = to_number(this.value);
+    		$$invalidate(0, meterValue);
+    	}
+
+    	$$self.$$set = $$props => {
+    		if ("meterValue" in $$props) $$invalidate(0, meterValue = $$props.meterValue);
+    	};
+
+    	$$self.$capture_state = () => ({ SpeedMeter, meterProps, meterValue });
+
+    	$$self.$inject_state = $$props => {
+    		if ("meterValue" in $$props) $$invalidate(0, meterValue = $$props.meterValue);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*meterValue*/ 1) {
+    			{
+    				$$invalidate(1, meterProps["currentValue"] = meterValue, meterProps);
+    			}
+    		}
+    	};
+
+    	return [meterValue, meterProps, input_change_input_handler];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, {});
+    		init(this, options, instance, create_fragment, safe_not_equal, { meterValue: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -976,6 +1062,14 @@ var app = (function () {
     			options,
     			id: create_fragment.name
     		});
+    	}
+
+    	get meterValue() {
+    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set meterValue(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 

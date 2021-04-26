@@ -7,27 +7,27 @@
   export let start:PickType<MeterProps, 'start'> = 0
   export let end:PickType<MeterProps, 'end'> = 100
   export let scales:PickType<MeterProps, 'scales'> = 10
+  export let unitsLabel:PickType<MeterProps, 'unitsLabel'> = 'mph'
+  export let guageInterval:PickType<MeterProps, 'guageInterval'> = 10
+  export let currentValue:PickType<MeterProps, 'currentValue'> = 0
 
   /** constants */
-  const outlineBorder:number = 4;
-  const scaleHeight:number = 2; 
-
-  const range = end - start
-
-  export let meterValue:number = 0
+  const OUTLINE_BORDER:number = 4;
+  const SCALE_HEIGHT:number = 2; 
+  const GUAGE_RANGE = end - start
 
   $: {
-    styles['meter-deg'] = `${(range / 100) * meterValue + start}deg`
+    styles['meter-deg'] = `${(GUAGE_RANGE / 100) * currentValue + start}deg`
   }
 
   /** CSS Variables */
   const styles:StyleProps = {
     'height': `${height}px`,
     'width': `${width}px`,
-    'scale-deg': `${range / scales}deg`,
+    'scale-deg': `${GUAGE_RANGE / scales}deg`,
     'offset-deg': `${start}deg`,
-    'outline-border': `${outlineBorder}px`,
-    'scale-height': `${scaleHeight}px`,
+    'outline-border': `${OUTLINE_BORDER}px`,
+    'scale-height': `${SCALE_HEIGHT}px`,
     'scale-origin': `${height / 2}px 0px`,
     'meter-deg': '90deg'
 	};
@@ -129,7 +129,7 @@
     <div class="outline">
       <ol>
         {#each Array(scales + 1) as _,i }
-        {#if i % 3 === 0}
+        {#if i % guageInterval === 0}
         <li style="--guage-width:5%;--guage-tick:{i};">
           <span>{i * 10}</span></li>
         {:else}
@@ -139,10 +139,9 @@
       </ol>
       <aside class="needle"></aside>
       <p class="value">
-        {Math.floor(meterValue * 2.7)}
-        <span>km/h</span>
+        {Math.floor(currentValue * 2.7)}
+        <span>{unitsLabel}</span>
       </p>
     </div><!--outline-->
   </div><!--speedMeter-->
 </div><!--speedMeterWrapper-->
-<input type="range" min="0" max="100" bind:value={meterValue} />
