@@ -2,33 +2,36 @@
   import type { MeterProps, PickType, StyleProps } from '../@types'
   
   /** props */
-  export let height:PickType<MeterProps, 'height'> = 200
-  export let width:PickType<MeterProps, 'width'> = 200
-  export let start:PickType<MeterProps, 'start'> = 0
-  export let end:PickType<MeterProps, 'end'> = 100
-  export let scales:PickType<MeterProps, 'scales'> = 10
-  export let unitsLabel:PickType<MeterProps, 'unitsLabel'> = 'mph'
+  export let guageHeight:PickType<MeterProps, 'guageHeight'> = 200
+  export let guageWidth:PickType<MeterProps, 'guageWidth'> = 200
+  export let guageStart:PickType<MeterProps, 'guageStart'> = 0
+  export let guageEnd:PickType<MeterProps, 'guageEnd'> = 100
+  export let guageScales:PickType<MeterProps, 'guageScales'> = 10
+  export let guageUnits:PickType<MeterProps, 'guageUnits'> = 'mph'
   export let guageInterval:PickType<MeterProps, 'guageInterval'> = 10
   export let currentValue:PickType<MeterProps, 'currentValue'> = 0
+  export let scaleCoefficient:PickType<MeterProps, 'scaleCoefficient'> = 10
+  export let guageLimit:PickType<MeterProps, 'guageLimit'> = 100
 
   /** constants */
   const OUTLINE_BORDER:number = 4;
   const SCALE_HEIGHT:number = 2; 
-  const GUAGE_RANGE = end - start
+  const GUAGE_RANGE = guageEnd - guageStart
+  const GUAGE_COEFFICIENT = guageLimit / 100
 
   $: {
-    styles['meter-deg'] = `${(GUAGE_RANGE / 100) * currentValue + start}deg`
+    styles['meter-deg'] = `${(GUAGE_RANGE / 100) * currentValue + guageStart}deg`
   }
 
   /** CSS Variables */
   const styles:StyleProps = {
-    'height': `${height}px`,
-    'width': `${width}px`,
-    'scale-deg': `${GUAGE_RANGE / scales}deg`,
-    'offset-deg': `${start}deg`,
+    'guage-height': `${guageHeight}px`,
+    'guage-width': `${guageWidth}px`,
+    'scale-deg': `${GUAGE_RANGE / guageScales}deg`,
+    'offset-deg': `${guageStart}deg`,
     'outline-border': `${OUTLINE_BORDER}px`,
     'scale-height': `${SCALE_HEIGHT}px`,
-    'scale-origin': `${height / 2}px 0px`,
+    'scale-origin': `${guageHeight / 2}px 0px`,
     'meter-deg': '90deg'
 	};
 	
@@ -41,15 +44,15 @@
     list-style-position: inside;
   }
   .speedMeterWrapper {
-    height: var(--height);
-    width: var(--width);
+    height: var(--guage-height);
+    width: var(--guage-width);
     border: solid 8px #444444;
     border-radius: 50%;
   }
   .speedMeter {
     position: absolute;
-    height: var(--height);
-    width: var(--width);
+    height: var(--guage-height);
+    width: var(--guage-width);
   }
   .speedMeter .outline {
     width: 100%;
@@ -128,10 +131,10 @@
   <div class="speedMeter">
     <div class="outline">
       <ol>
-        {#each Array(scales + 1) as _,i }
+        {#each Array(guageScales + 1) as _,i }
         {#if i % guageInterval === 0}
         <li style="--guage-width:5%;--guage-tick:{i};">
-          <span>{i * 10}</span></li>
+          <span>{i * scaleCoefficient}</span></li>
         {:else}
         <li style="--guage-width:3%;--guage-tick:{i};"></li>
         {/if}
@@ -139,8 +142,8 @@
       </ol>
       <aside class="needle"></aside>
       <p class="value">
-        {Math.floor(currentValue * 2.7)}
-        <span>{unitsLabel}</span>
+        {Math.floor(currentValue * GUAGE_COEFFICIENT)}
+        <span>{guageUnits}</span>
       </p>
     </div><!--outline-->
   </div><!--speedMeter-->
