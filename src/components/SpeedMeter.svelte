@@ -71,6 +71,7 @@
     height: var(--scale-height);
     width: var(--guage-width);
     background: #ffffff;
+    line-height: 1;
     transform-origin: var(--scale-origin);
     transform: rotate(calc(var(--scale-deg) * var(--guage-tick) + var(--offset-deg)));
   }

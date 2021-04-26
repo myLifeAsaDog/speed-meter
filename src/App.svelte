@@ -4,10 +4,10 @@
 
 	const meterProps: MeterProps = {
 		height: 300,
-  	width: 300,
-  	start: -30,
-  	end: 210,
-  	scales: 27
+		width: 300,
+		start: -30,
+		end: 210,
+		scales: 27
 	}
 </script>
 
