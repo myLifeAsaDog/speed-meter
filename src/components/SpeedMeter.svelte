@@ -19,7 +19,7 @@
   const SCALE_HEIGHT:number = 2
   const GUAGE_RANGE = guageEnd - guageStart
   const GUAGE_COEFFICIENT = guageLimit / 100
-  const SCALE_ORIGIN = `${guageHeight / 2 - OUTLINE_BORDER * 0.5}px ${OUTLINE_BORDER * -0.5}px`
+  const SCALE_ORIGIN = `${guageHeight / 2 - OUTLINE_BORDER}px ${OUTLINE_BORDER * -0.5}px`
 
   /** CSS Variables */
   const styles:StyleProps = {
@@ -34,7 +34,7 @@
   }
 
   /** Reactive variables */
-  let cssVarStyles
+  let cssVarStyles:string
 
   $: {
     styles['meter-deg'] = `${(GUAGE_RANGE / 100) * currentValue + guageStart}deg`
