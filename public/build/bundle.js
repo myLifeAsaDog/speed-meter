@@ -936,90 +936,144 @@ var app = (function () {
 
     function create_fragment(ctx) {
     	let main;
-    	let speedmeter;
+    	let section0;
+    	let speedmeter0;
     	let t0;
-    	let section;
-    	let label;
+    	let label0;
     	let t2;
-    	let input;
+    	let input0;
+    	let t3;
+    	let section1;
+    	let speedmeter1;
+    	let t4;
+    	let label1;
+    	let t6;
+    	let input1;
     	let current;
     	let mounted;
     	let dispose;
-    	const speedmeter_spread_levels = [/*meterProps*/ ctx[1]];
-    	let speedmeter_props = {};
+    	const speedmeter0_spread_levels = [/*meterProps*/ ctx[2]];
+    	let speedmeter0_props = {};
 
-    	for (let i = 0; i < speedmeter_spread_levels.length; i += 1) {
-    		speedmeter_props = assign(speedmeter_props, speedmeter_spread_levels[i]);
+    	for (let i = 0; i < speedmeter0_spread_levels.length; i += 1) {
+    		speedmeter0_props = assign(speedmeter0_props, speedmeter0_spread_levels[i]);
     	}
 
-    	speedmeter = new SpeedMeter({ props: speedmeter_props, $$inline: true });
+    	speedmeter0 = new SpeedMeter({ props: speedmeter0_props, $$inline: true });
+    	const speedmeter1_spread_levels = [/*meterProps02*/ ctx[3]];
+    	let speedmeter1_props = {};
+
+    	for (let i = 0; i < speedmeter1_spread_levels.length; i += 1) {
+    		speedmeter1_props = assign(speedmeter1_props, speedmeter1_spread_levels[i]);
+    	}
+
+    	speedmeter1 = new SpeedMeter({ props: speedmeter1_props, $$inline: true });
 
     	const block = {
     		c: function create() {
     			main = element("main");
-    			create_component(speedmeter.$$.fragment);
+    			section0 = element("section");
+    			create_component(speedmeter0.$$.fragment);
     			t0 = space();
-    			section = element("section");
-    			label = element("label");
-    			label.textContent = "現在値(0-100固定)";
+    			label0 = element("label");
+    			label0.textContent = "現在値(0-100固定)";
     			t2 = space();
-    			input = element("input");
-    			attr_dev(label, "for", "01");
-    			add_location(label, file, 36, 2, 667);
-    			attr_dev(input, "id", "01");
-    			attr_dev(input, "type", "range");
-    			attr_dev(input, "min", "0");
-    			attr_dev(input, "max", "100");
-    			add_location(input, file, 37, 2, 706);
-    			add_location(section, file, 35, 1, 655);
-    			add_location(main, file, 33, 0, 615);
+    			input0 = element("input");
+    			t3 = space();
+    			section1 = element("section");
+    			create_component(speedmeter1.$$.fragment);
+    			t4 = space();
+    			label1 = element("label");
+    			label1.textContent = "現在値(0-100固定)";
+    			t6 = space();
+    			input1 = element("input");
+    			attr_dev(label0, "for", "01");
+    			add_location(label0, file, 50, 2, 1010);
+    			attr_dev(input0, "id", "01");
+    			attr_dev(input0, "type", "range");
+    			attr_dev(input0, "min", "0");
+    			attr_dev(input0, "max", "100");
+    			add_location(input0, file, 51, 2, 1049);
+    			add_location(section0, file, 48, 1, 965);
+    			attr_dev(label1, "for", "02");
+    			add_location(label1, file, 55, 2, 1180);
+    			attr_dev(input1, "id", "02");
+    			attr_dev(input1, "type", "range");
+    			attr_dev(input1, "min", "0");
+    			attr_dev(input1, "max", "100");
+    			add_location(input1, file, 56, 2, 1219);
+    			add_location(section1, file, 53, 1, 1133);
+    			add_location(main, file, 47, 0, 957);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			mount_component(speedmeter, main, null);
-    			append_dev(main, t0);
-    			append_dev(main, section);
-    			append_dev(section, label);
-    			append_dev(section, t2);
-    			append_dev(section, input);
-    			set_input_value(input, /*meterValue*/ ctx[0]);
+    			append_dev(main, section0);
+    			mount_component(speedmeter0, section0, null);
+    			append_dev(section0, t0);
+    			append_dev(section0, label0);
+    			append_dev(section0, t2);
+    			append_dev(section0, input0);
+    			set_input_value(input0, /*meterValue*/ ctx[0]);
+    			append_dev(main, t3);
+    			append_dev(main, section1);
+    			mount_component(speedmeter1, section1, null);
+    			append_dev(section1, t4);
+    			append_dev(section1, label1);
+    			append_dev(section1, t6);
+    			append_dev(section1, input1);
+    			set_input_value(input1, /*meterValue02*/ ctx[1]);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "change", /*input_change_input_handler*/ ctx[2]),
-    					listen_dev(input, "input", /*input_change_input_handler*/ ctx[2])
+    					listen_dev(input0, "change", /*input0_change_input_handler*/ ctx[4]),
+    					listen_dev(input0, "input", /*input0_change_input_handler*/ ctx[4]),
+    					listen_dev(input1, "change", /*input1_change_input_handler*/ ctx[5]),
+    					listen_dev(input1, "input", /*input1_change_input_handler*/ ctx[5])
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			const speedmeter_changes = (dirty & /*meterProps*/ 2)
-    			? get_spread_update(speedmeter_spread_levels, [get_spread_object(/*meterProps*/ ctx[1])])
+    			const speedmeter0_changes = (dirty & /*meterProps*/ 4)
+    			? get_spread_update(speedmeter0_spread_levels, [get_spread_object(/*meterProps*/ ctx[2])])
     			: {};
 
-    			speedmeter.$set(speedmeter_changes);
+    			speedmeter0.$set(speedmeter0_changes);
 
     			if (dirty & /*meterValue*/ 1) {
-    				set_input_value(input, /*meterValue*/ ctx[0]);
+    				set_input_value(input0, /*meterValue*/ ctx[0]);
+    			}
+
+    			const speedmeter1_changes = (dirty & /*meterProps02*/ 8)
+    			? get_spread_update(speedmeter1_spread_levels, [get_spread_object(/*meterProps02*/ ctx[3])])
+    			: {};
+
+    			speedmeter1.$set(speedmeter1_changes);
+
+    			if (dirty & /*meterValue02*/ 2) {
+    				set_input_value(input1, /*meterValue02*/ ctx[1]);
     			}
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(speedmeter.$$.fragment, local);
+    			transition_in(speedmeter0.$$.fragment, local);
+    			transition_in(speedmeter1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(speedmeter.$$.fragment, local);
+    			transition_out(speedmeter0.$$.fragment, local);
+    			transition_out(speedmeter1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			destroy_component(speedmeter);
+    			destroy_component(speedmeter0);
+    			destroy_component(speedmeter1);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -1054,26 +1108,53 @@ var app = (function () {
     		guageLimit: 270
     	};
 
+    	const meterProps02 = {
+    		guageHeight: 300,
+    		guageWidth: 300,
+    		guageStart: 30,
+    		guageEnd: 210,
+    		guageScales: 90,
+    		guageUnits: "x1000 rpm",
+    		guageInterval: 10,
+    		currentValue: 0,
+    		scaleCoefficient: 0.1,
+    		guageLimit: 9000
+    	};
+
     	let { meterValue = 0 } = $$props;
-    	const writable_props = ["meterValue"];
+    	let { meterValue02 = 0 } = $$props;
+    	const writable_props = ["meterValue", "meterValue02"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	function input_change_input_handler() {
+    	function input0_change_input_handler() {
     		meterValue = to_number(this.value);
     		$$invalidate(0, meterValue);
     	}
 
+    	function input1_change_input_handler() {
+    		meterValue02 = to_number(this.value);
+    		$$invalidate(1, meterValue02);
+    	}
+
     	$$self.$$set = $$props => {
     		if ("meterValue" in $$props) $$invalidate(0, meterValue = $$props.meterValue);
+    		if ("meterValue02" in $$props) $$invalidate(1, meterValue02 = $$props.meterValue02);
     	};
 
-    	$$self.$capture_state = () => ({ SpeedMeter, meterProps, meterValue });
+    	$$self.$capture_state = () => ({
+    		SpeedMeter,
+    		meterProps,
+    		meterProps02,
+    		meterValue,
+    		meterValue02
+    	});
 
     	$$self.$inject_state = $$props => {
     		if ("meterValue" in $$props) $$invalidate(0, meterValue = $$props.meterValue);
+    		if ("meterValue02" in $$props) $$invalidate(1, meterValue02 = $$props.meterValue02);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -1081,20 +1162,28 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*meterValue*/ 1) {
+    		if ($$self.$$.dirty & /*meterValue, meterValue02*/ 3) {
     			{
-    				$$invalidate(1, meterProps["currentValue"] = meterValue, meterProps);
+    				$$invalidate(2, meterProps["currentValue"] = meterValue, meterProps);
+    				$$invalidate(3, meterProps02["currentValue"] = meterValue02, meterProps02);
     			}
     		}
     	};
 
-    	return [meterValue, meterProps, input_change_input_handler];
+    	return [
+    		meterValue,
+    		meterValue02,
+    		meterProps,
+    		meterProps02,
+    		input0_change_input_handler,
+    		input1_change_input_handler
+    	];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { meterValue: 0 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { meterValue: 0, meterValue02: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1109,6 +1198,14 @@ var app = (function () {
     	}
 
     	set meterValue(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get meterValue02() {
+    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set meterValue02(value) {
     		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }

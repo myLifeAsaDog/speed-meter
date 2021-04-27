@@ -15,11 +15,26 @@
 		guageLimit: 270
 	}
 
+	const meterProps02: MeterProps = {
+		guageHeight: 300,
+		guageWidth: 300,
+		guageStart: 30,
+		guageEnd: 210,
+		guageScales: 90,
+		guageUnits: 'x1000 rpm',
+		guageInterval: 10,
+		currentValue: 0,
+		scaleCoefficient: 0.1,
+		guageLimit: 9000
+	}
+
 	/** value changes */
 	export let meterValue:PickType<MeterProps, 'currentValue'> = 0
+	export let meterValue02:PickType<MeterProps, 'currentValue'> = 0
 
 	$: {
 		meterProps['currentValue'] = meterValue
+		meterProps02['currentValue'] = meterValue02
 	}
 </script>
 
@@ -36,9 +51,14 @@
 </style>
 
 <main>
-	<SpeedMeter {...meterProps} />
 	<section>
+		<SpeedMeter {...meterProps} />
 		<label for="01">現在値(0-100固定)</label>
 		<input id="01" type="range" min="0" max="100" bind:value={meterValue}>
+	</section>
+	<section>
+		<SpeedMeter {...meterProps02} />
+		<label for="02">現在値(0-100固定)</label>
+		<input id="02" type="range" min="0" max="100" bind:value={meterValue02}>
 	</section>
 </main>
