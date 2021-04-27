@@ -58,9 +58,6 @@ var app = (function () {
     function space() {
         return text(' ');
     }
-    function empty() {
-        return text('');
-    }
     function listen(node, event, handler, options) {
         node.addEventListener(event, handler, options);
         return () => node.removeEventListener(event, handler, options);
@@ -79,9 +76,6 @@ var app = (function () {
     }
     function set_input_value(input, value) {
         input.value = value == null ? '' : value;
-    }
-    function set_style(node, key, value, important) {
-        node.style.setProperty(key, value, important ? 'important' : '');
     }
     function custom_event(type, detail) {
         const e = document.createEvent('CustomEvent');
@@ -436,72 +430,33 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[14] = list[i];
-    	child_ctx[16] = i;
+    	child_ctx[16] = list[i];
+    	child_ctx[18] = i;
     	return child_ctx;
     }
 
-    // (134:8) {:else}
-    function create_else_block(ctx) {
-    	let li;
-
-    	const block = {
-    		c: function create() {
-    			li = element("li");
-    			set_style(li, "--guage-width", "3%");
-    			set_style(li, "--guage-tick", /*i*/ ctx[16]);
-    			attr_dev(li, "class", "svelte-eatgob");
-    			add_location(li, file$1, 134, 8, 3603);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, li, anchor);
-    		},
-    		p: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(li);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block.name,
-    		type: "else",
-    		source: "(134:8) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (131:8) {#if i % guageInterval === 0}
+    // (137:10) {#if i % guageInterval === 0}
     function create_if_block(ctx) {
-    	let li;
     	let span;
-    	let t_value = /*i*/ ctx[16] * /*scaleCoefficient*/ ctx[4] + "";
+    	let t_value = /*i*/ ctx[18] * /*scaleCoefficient*/ ctx[4] + "";
     	let t;
 
     	const block = {
     		c: function create() {
-    			li = element("li");
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "svelte-eatgob");
-    			add_location(span, file$1, 132, 10, 3536);
-    			set_style(li, "--guage-width", "5%");
-    			set_style(li, "--guage-tick", /*i*/ ctx[16]);
-    			attr_dev(li, "class", "svelte-eatgob");
-    			add_location(li, file$1, 131, 8, 3477);
+    			attr_dev(span, "class", "svelte-1ieswpx");
+    			add_location(span, file$1, 136, 39, 3787);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, li, anchor);
-    			append_dev(li, span);
+    			insert_dev(target, span, anchor);
     			append_dev(span, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*scaleCoefficient*/ 16 && t_value !== (t_value = /*i*/ ctx[16] * /*scaleCoefficient*/ ctx[4] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*scaleCoefficient*/ 16 && t_value !== (t_value = /*i*/ ctx[18] * /*scaleCoefficient*/ ctx[4] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(li);
+    			if (detaching) detach_dev(span);
     		}
     	};
 
@@ -509,50 +464,65 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(131:8) {#if i % guageInterval === 0}",
+    		source: "(137:10) {#if i % guageInterval === 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (130:8) {#each Array(guageScales + 1) as _,i }
+    // (132:8) {#each Array(guageScales + 1) as _,i }
     function create_each_block(ctx) {
-    	let if_block_anchor;
-
-    	function select_block_type(ctx, dirty) {
-    		if (/*i*/ ctx[16] % /*guageInterval*/ ctx[2] === 0) return create_if_block;
-    		return create_else_block;
-    	}
-
-    	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type(ctx);
+    	let li;
+    	let t;
+    	let li_style_value;
+    	let if_block = /*i*/ ctx[18] % /*guageInterval*/ ctx[2] === 0 && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
-    			if_block.c();
-    			if_block_anchor = empty();
+    			li = element("li");
+    			if (if_block) if_block.c();
+    			t = space();
+
+    			attr_dev(li, "style", li_style_value = "\r\n          " + (/*i*/ ctx[18] % /*guageInterval*/ ctx[2]
+    			? "--scale-width:3%;"
+    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[18] >= /*redzone*/ ctx[5]
+    			? "--scale-bg:#ff3333;"
+    			: "--scale-bg:#ffffff;") + "\r\n          --guage-tick:" + /*i*/ ctx[18] + ";");
+
+    			attr_dev(li, "class", "svelte-1ieswpx");
+    			add_location(li, file$1, 132, 8, 3563);
     		},
     		m: function mount(target, anchor) {
-    			if_block.m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
+    			insert_dev(target, li, anchor);
+    			if (if_block) if_block.m(li, null);
+    			append_dev(li, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
-    				if_block.p(ctx, dirty);
-    			} else {
-    				if_block.d(1);
-    				if_block = current_block_type(ctx);
-
+    			if (/*i*/ ctx[18] % /*guageInterval*/ ctx[2] === 0) {
     				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block(ctx);
     					if_block.c();
-    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    					if_block.m(li, t);
     				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*guageInterval, redzone*/ 36 && li_style_value !== (li_style_value = "\r\n          " + (/*i*/ ctx[18] % /*guageInterval*/ ctx[2]
+    			? "--scale-width:3%;"
+    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[18] >= /*redzone*/ ctx[5]
+    			? "--scale-bg:#ff3333;"
+    			: "--scale-bg:#ffffff;") + "\r\n          --guage-tick:" + /*i*/ ctx[18] + ";")) {
+    				attr_dev(li, "style", li_style_value);
     			}
     		},
     		d: function destroy(detaching) {
-    			if_block.d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
+    			if (detaching) detach_dev(li);
+    			if (if_block) if_block.d();
     		}
     	};
 
@@ -560,7 +530,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(130:8) {#each Array(guageScales + 1) as _,i }",
+    		source: "(132:8) {#each Array(guageScales + 1) as _,i }",
     		ctx
     	});
 
@@ -576,7 +546,7 @@ var app = (function () {
     	let aside;
     	let t1;
     	let p;
-    	let t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GUAGE_COEFFICIENT*/ ctx[6]) + "";
+    	let t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GUAGE_COEFFICIENT*/ ctx[7]) + "";
     	let t2;
     	let t3;
     	let span;
@@ -608,21 +578,21 @@ var app = (function () {
     			t3 = space();
     			span = element("span");
     			t4 = text(/*guageUnits*/ ctx[1]);
-    			attr_dev(ol, "class", "svelte-eatgob");
-    			add_location(ol, file$1, 128, 6, 3376);
-    			attr_dev(aside, "class", "needle svelte-eatgob");
-    			add_location(aside, file$1, 138, 6, 3708);
-    			attr_dev(span, "class", "svelte-eatgob");
-    			add_location(span, file$1, 141, 8, 3829);
-    			attr_dev(p, "class", "value svelte-eatgob");
-    			add_location(p, file$1, 139, 6, 3746);
-    			attr_dev(div0, "class", "outline svelte-eatgob");
-    			add_location(div0, file$1, 127, 4, 3347);
-    			attr_dev(div1, "class", "speedMeter svelte-eatgob");
-    			add_location(div1, file$1, 126, 2, 3317);
-    			attr_dev(div2, "class", "speedMeterWrapper svelte-eatgob");
-    			attr_dev(div2, "style", /*cssVarStyles*/ ctx[5]);
-    			add_location(div2, file$1, 125, 0, 3259);
+    			attr_dev(ol, "class", "svelte-1ieswpx");
+    			add_location(ol, file$1, 130, 6, 3493);
+    			attr_dev(aside, "class", "needle svelte-1ieswpx");
+    			add_location(aside, file$1, 140, 6, 3880);
+    			attr_dev(span, "class", "svelte-1ieswpx");
+    			add_location(span, file$1, 143, 8, 4001);
+    			attr_dev(p, "class", "value svelte-1ieswpx");
+    			add_location(p, file$1, 141, 6, 3918);
+    			attr_dev(div0, "class", "outline svelte-1ieswpx");
+    			add_location(div0, file$1, 129, 4, 3464);
+    			attr_dev(div1, "class", "speedMeter svelte-1ieswpx");
+    			add_location(div1, file$1, 128, 2, 3434);
+    			attr_dev(div2, "class", "speedMeterWrapper svelte-1ieswpx");
+    			attr_dev(div2, "style", /*cssVarStyles*/ ctx[6]);
+    			add_location(div2, file$1, 127, 0, 3376);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -647,7 +617,7 @@ var app = (function () {
     			append_dev(span, t4);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*scaleCoefficient, guageInterval, guageScales*/ 21) {
+    			if (dirty & /*guageInterval, redzone, scaleCoefficient, guageScales*/ 53) {
     				each_value = Array(/*guageScales*/ ctx[0] + 1);
     				validate_each_argument(each_value);
     				let i;
@@ -671,11 +641,11 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*currentValue*/ 8 && t2_value !== (t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GUAGE_COEFFICIENT*/ ctx[6]) + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*currentValue*/ 8 && t2_value !== (t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GUAGE_COEFFICIENT*/ ctx[7]) + "")) set_data_dev(t2, t2_value);
     			if (dirty & /*guageUnits*/ 2) set_data_dev(t4, /*guageUnits*/ ctx[1]);
 
-    			if (dirty & /*cssVarStyles*/ 32) {
-    				attr_dev(div2, "style", /*cssVarStyles*/ ctx[5]);
+    			if (dirty & /*cssVarStyles*/ 64) {
+    				attr_dev(div2, "style", /*cssVarStyles*/ ctx[6]);
     			}
     		},
     		i: noop,
@@ -714,8 +684,10 @@ var app = (function () {
     	let { currentValue = 0 } = $$props;
     	let { scaleCoefficient = 10 } = $$props;
     	let { guageLimit = 100 } = $$props;
+    	let { redzone = 100 } = $$props;
     	const GUAGE_RANGE = guageEnd - guageStart;
     	const GUAGE_COEFFICIENT = guageLimit / 100;
+    	const SCALE_ORIGIN = `${guageHeight / 2 - OUTLINE_BORDER * 0.5}px ${OUTLINE_BORDER * -0.5}px`;
 
     	/** CSS Variables */
     	const styles = {
@@ -725,7 +697,7 @@ var app = (function () {
     		"offset-deg": `${guageStart}deg`,
     		"outline-border": `${OUTLINE_BORDER}px`,
     		"scale-height": `${SCALE_HEIGHT}px`,
-    		"scale-origin": `${guageHeight / 2}px 0px`,
+    		"scale-origin": SCALE_ORIGIN,
     		"meter-deg": "90deg"
     	};
 
@@ -742,7 +714,8 @@ var app = (function () {
     		"guageInterval",
     		"currentValue",
     		"scaleCoefficient",
-    		"guageLimit"
+    		"guageLimit",
+    		"redzone"
     	];
 
     	Object_1.keys($$props).forEach(key => {
@@ -750,16 +723,17 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("guageHeight" in $$props) $$invalidate(7, guageHeight = $$props.guageHeight);
-    		if ("guageWidth" in $$props) $$invalidate(8, guageWidth = $$props.guageWidth);
-    		if ("guageStart" in $$props) $$invalidate(9, guageStart = $$props.guageStart);
-    		if ("guageEnd" in $$props) $$invalidate(10, guageEnd = $$props.guageEnd);
+    		if ("guageHeight" in $$props) $$invalidate(8, guageHeight = $$props.guageHeight);
+    		if ("guageWidth" in $$props) $$invalidate(9, guageWidth = $$props.guageWidth);
+    		if ("guageStart" in $$props) $$invalidate(10, guageStart = $$props.guageStart);
+    		if ("guageEnd" in $$props) $$invalidate(11, guageEnd = $$props.guageEnd);
     		if ("guageScales" in $$props) $$invalidate(0, guageScales = $$props.guageScales);
     		if ("guageUnits" in $$props) $$invalidate(1, guageUnits = $$props.guageUnits);
     		if ("guageInterval" in $$props) $$invalidate(2, guageInterval = $$props.guageInterval);
     		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
     		if ("scaleCoefficient" in $$props) $$invalidate(4, scaleCoefficient = $$props.scaleCoefficient);
-    		if ("guageLimit" in $$props) $$invalidate(11, guageLimit = $$props.guageLimit);
+    		if ("guageLimit" in $$props) $$invalidate(12, guageLimit = $$props.guageLimit);
+    		if ("redzone" in $$props) $$invalidate(5, redzone = $$props.redzone);
     	};
 
     	$$self.$capture_state = () => ({
@@ -773,26 +747,29 @@ var app = (function () {
     		currentValue,
     		scaleCoefficient,
     		guageLimit,
+    		redzone,
     		OUTLINE_BORDER,
     		SCALE_HEIGHT,
     		GUAGE_RANGE,
     		GUAGE_COEFFICIENT,
+    		SCALE_ORIGIN,
     		styles,
     		cssVarStyles
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("guageHeight" in $$props) $$invalidate(7, guageHeight = $$props.guageHeight);
-    		if ("guageWidth" in $$props) $$invalidate(8, guageWidth = $$props.guageWidth);
-    		if ("guageStart" in $$props) $$invalidate(9, guageStart = $$props.guageStart);
-    		if ("guageEnd" in $$props) $$invalidate(10, guageEnd = $$props.guageEnd);
+    		if ("guageHeight" in $$props) $$invalidate(8, guageHeight = $$props.guageHeight);
+    		if ("guageWidth" in $$props) $$invalidate(9, guageWidth = $$props.guageWidth);
+    		if ("guageStart" in $$props) $$invalidate(10, guageStart = $$props.guageStart);
+    		if ("guageEnd" in $$props) $$invalidate(11, guageEnd = $$props.guageEnd);
     		if ("guageScales" in $$props) $$invalidate(0, guageScales = $$props.guageScales);
     		if ("guageUnits" in $$props) $$invalidate(1, guageUnits = $$props.guageUnits);
     		if ("guageInterval" in $$props) $$invalidate(2, guageInterval = $$props.guageInterval);
     		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
     		if ("scaleCoefficient" in $$props) $$invalidate(4, scaleCoefficient = $$props.scaleCoefficient);
-    		if ("guageLimit" in $$props) $$invalidate(11, guageLimit = $$props.guageLimit);
-    		if ("cssVarStyles" in $$props) $$invalidate(5, cssVarStyles = $$props.cssVarStyles);
+    		if ("guageLimit" in $$props) $$invalidate(12, guageLimit = $$props.guageLimit);
+    		if ("redzone" in $$props) $$invalidate(5, redzone = $$props.redzone);
+    		if ("cssVarStyles" in $$props) $$invalidate(6, cssVarStyles = $$props.cssVarStyles);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -800,10 +777,10 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*currentValue, guageStart, styles*/ 4616) {
+    		if ($$self.$$.dirty & /*currentValue, guageStart, styles*/ 9224) {
     			{
-    				$$invalidate(12, styles["meter-deg"] = `${GUAGE_RANGE / 100 * currentValue + guageStart}deg`, styles);
-    				$$invalidate(5, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
+    				$$invalidate(13, styles["meter-deg"] = `${GUAGE_RANGE / 100 * currentValue + guageStart}deg`, styles);
+    				$$invalidate(6, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
     			}
     		}
     	};
@@ -814,6 +791,7 @@ var app = (function () {
     		guageInterval,
     		currentValue,
     		scaleCoefficient,
+    		redzone,
     		cssVarStyles,
     		GUAGE_COEFFICIENT,
     		guageHeight,
@@ -830,16 +808,17 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			guageHeight: 7,
-    			guageWidth: 8,
-    			guageStart: 9,
-    			guageEnd: 10,
+    			guageHeight: 8,
+    			guageWidth: 9,
+    			guageStart: 10,
+    			guageEnd: 11,
     			guageScales: 0,
     			guageUnits: 1,
     			guageInterval: 2,
     			currentValue: 3,
     			scaleCoefficient: 4,
-    			guageLimit: 11
+    			guageLimit: 12,
+    			redzone: 5
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -929,6 +908,14 @@ var app = (function () {
     	set guageLimit(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get redzone() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set redzone(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src\App.svelte generated by Svelte v3.37.0 */
@@ -988,22 +975,22 @@ var app = (function () {
     			t6 = space();
     			input1 = element("input");
     			attr_dev(label0, "for", "01");
-    			add_location(label0, file, 50, 2, 1010);
+    			add_location(label0, file, 52, 2, 1046);
     			attr_dev(input0, "id", "01");
     			attr_dev(input0, "type", "range");
     			attr_dev(input0, "min", "0");
     			attr_dev(input0, "max", "100");
-    			add_location(input0, file, 51, 2, 1049);
-    			add_location(section0, file, 48, 1, 965);
+    			add_location(input0, file, 53, 2, 1085);
+    			add_location(section0, file, 50, 1, 1001);
     			attr_dev(label1, "for", "02");
-    			add_location(label1, file, 55, 2, 1180);
+    			add_location(label1, file, 57, 2, 1216);
     			attr_dev(input1, "id", "02");
     			attr_dev(input1, "type", "range");
     			attr_dev(input1, "min", "0");
     			attr_dev(input1, "max", "100");
-    			add_location(input1, file, 56, 2, 1219);
-    			add_location(section1, file, 53, 1, 1133);
-    			add_location(main, file, 47, 0, 957);
+    			add_location(input1, file, 58, 2, 1255);
+    			add_location(section1, file, 55, 1, 1169);
+    			add_location(main, file, 49, 0, 993);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1105,7 +1092,8 @@ var app = (function () {
     		guageInterval: 3,
     		currentValue: 0,
     		scaleCoefficient: 10,
-    		guageLimit: 270
+    		guageLimit: 270,
+    		redzone: 21
     	};
 
     	const meterProps02 = {
@@ -1118,7 +1106,8 @@ var app = (function () {
     		guageInterval: 10,
     		currentValue: 0,
     		scaleCoefficient: 0.1,
-    		guageLimit: 9000
+    		guageLimit: 9000,
+    		redzone: 60
     	};
 
     	let { meterValue = 0 } = $$props;

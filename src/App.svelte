@@ -12,7 +12,8 @@
 		guageInterval: 3,
 		currentValue: 0,
 		scaleCoefficient: 10,
-		guageLimit: 270
+		guageLimit: 270,
+		redzone: 21
 	}
 
 	const meterProps02: MeterProps = {
@@ -25,7 +26,8 @@
 		guageInterval: 10,
 		currentValue: 0,
 		scaleCoefficient: 0.1,
-		guageLimit: 9000
+		guageLimit: 9000,
+		redzone: 60
 	}
 
 	/** value changes */

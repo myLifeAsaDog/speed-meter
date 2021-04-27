@@ -12,12 +12,14 @@
   export let currentValue:PickType<MeterProps, 'currentValue'> = 0
   export let scaleCoefficient:PickType<MeterProps, 'scaleCoefficient'> = 10
   export let guageLimit:PickType<MeterProps, 'guageLimit'> = 100
+  export let redzone:PickType<MeterProps, 'redzone'> = 100
 
   /** constants */
   const OUTLINE_BORDER:number = 4
   const SCALE_HEIGHT:number = 2
   const GUAGE_RANGE = guageEnd - guageStart
   const GUAGE_COEFFICIENT = guageLimit / 100
+  const SCALE_ORIGIN = `${guageHeight / 2 - OUTLINE_BORDER * 0.5}px ${OUTLINE_BORDER * -0.5}px`
 
   /** CSS Variables */
   const styles:StyleProps = {
@@ -27,7 +29,7 @@
     'offset-deg': `${guageStart}deg`,
     'outline-border': `${OUTLINE_BORDER}px`,
     'scale-height': `${SCALE_HEIGHT}px`,
-    'scale-origin': `${guageHeight / 2}px 0px`,
+    'scale-origin': SCALE_ORIGIN,
     'meter-deg': '90deg'
   }
 
@@ -76,8 +78,8 @@
     top: 50%;
     left: 0;
     height: var(--scale-height);
-    width: var(--guage-width);
-    background: #ffffff;
+    width: var(--scale-width);
+    background: var(--scale-bg);
     line-height: 1;
     transform-origin: var(--scale-origin);
     transform: rotate(calc(var(--scale-deg) * var(--guage-tick) + var(--offset-deg)));
@@ -133,13 +135,13 @@
   <div class="speedMeter">
     <div class="outline">
       <ol>
-        {#each Array(guageScales + 1) as _,i }
-        {#if i % guageInterval === 0}
-        <li style="--guage-width:5%;--guage-tick:{i};">
-          <span>{i * scaleCoefficient}</span></li>
-        {:else}
-        <li style="--guage-width:3%;--guage-tick:{i};"></li>
-        {/if}
+        {#each Array(guageScales + 1) as _,i }        
+        <li style="
+          {i % guageInterval?'--scale-width:3%;':'--scale-width:5%;'}
+          {i >= redzone?'--scale-bg:#ff3333;':'--scale-bg:#ffffff;'}
+          --guage-tick:{i};">
+          {#if i % guageInterval === 0}<span>{i * scaleCoefficient}</span>{/if}
+        </li>
         {/each}
       </ol>
       <aside class="needle"></aside>
