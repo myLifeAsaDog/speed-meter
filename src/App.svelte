@@ -17,8 +17,8 @@
 	}
 
 	const meterProps02: MeterProps = {
-		guageHeight: 300,
-		guageWidth: 300,
+		guageHeight: 340,
+		guageWidth: 340,
 		guageStart: 30,
 		guageEnd: 210,
 		guageScales: 90,

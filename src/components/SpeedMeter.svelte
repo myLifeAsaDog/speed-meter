@@ -19,7 +19,7 @@
   const SCALE_HEIGHT:number = 2
   const GUAGE_RANGE = guageEnd - guageStart
   const GUAGE_COEFFICIENT = guageLimit / 100
-  const SCALE_ORIGIN = `${guageHeight / 2 - OUTLINE_BORDER}px ${OUTLINE_BORDER * -0.5}px`
+  const SCALE_ORIGIN = `${guageHeight / 2 - OUTLINE_BORDER / 2}px 0px`
 
   /** CSS Variables */
   const styles:StyleProps = {
@@ -111,7 +111,7 @@
     background:#333333;
     position:relative;
     top: -10px;
-    left: 140px;
+    left: calc(var(--guage-width) / 2 - 10px);
     border-radius: 50%;
     border: solid 1px #999999;
   }
