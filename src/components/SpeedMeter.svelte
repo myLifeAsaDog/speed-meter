@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { MeterProps, PickType, StyleProps } from '../@types'
   
-  /** props */
+  /** PROPS */
   export let guageHeight:PickType<MeterProps, 'guageHeight'> = 200
   export let guageWidth:PickType<MeterProps, 'guageWidth'> = 200
   export let guageStart:PickType<MeterProps, 'guageStart'> = 0
@@ -14,7 +14,7 @@
   export let guageLimit:PickType<MeterProps, 'guageLimit'> = 100
   export let redzone:PickType<MeterProps, 'redzone'> = 100
 
-  /** constants */
+  /** CONSTANTS */
   const OUTLINE_BORDER:number = 4
   const SCALE_HEIGHT:number = 2
   const GUAGE_RANGE = guageEnd - guageStart

@@ -2,7 +2,7 @@
 	import type { MeterProps, PickType } from './@types'
 	import SpeedMeter from './components/SpeedMeter.svelte'
 
-	const meterProps: MeterProps = {
+	const meterProps:MeterProps = {
 		guageHeight: 300,
 		guageWidth: 300,
 		guageStart: -30,
@@ -16,7 +16,7 @@
 		redzone: 21
 	}
 
-	const meterProps02: MeterProps = {
+	const meterProps02:MeterProps = {
 		guageHeight: 340,
 		guageWidth: 340,
 		guageStart: 30,
@@ -56,11 +56,11 @@
 	<section>
 		<SpeedMeter {...meterProps} />
 		<label for="01">現在値(0-100固定)</label>
-		<input id="01" type="range" min="0" max="100" bind:value={meterValue}>
+		<input id="01" type="range" min="0" max="100" bind:value={meterValue} />
 	</section>
 	<section>
 		<SpeedMeter {...meterProps02} />
 		<label for="02">現在値(0-100固定)</label>
-		<input id="02" type="range" min="0" max="100" bind:value={meterValue02}>
+		<input id="02" type="range" min="0" max="100" bind:value={meterValue02} />
 	</section>
 </main>
