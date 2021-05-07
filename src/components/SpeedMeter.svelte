@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MeterProps, PickType, StyleProps } from '../@types'
+  import type { MeterProps, PickType, StyleProps } from '../index'
   
   /** PROPS */
   export let guageHeight:PickType<MeterProps, 'guageHeight'> = 200

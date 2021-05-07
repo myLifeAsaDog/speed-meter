@@ -975,22 +975,22 @@ var app = (function () {
     			t6 = space();
     			input1 = element("input");
     			attr_dev(label0, "for", "01");
-    			add_location(label0, file, 52, 2, 1046);
+    			add_location(label0, file, 52, 4, 1067);
     			attr_dev(input0, "id", "01");
     			attr_dev(input0, "type", "range");
     			attr_dev(input0, "min", "0");
     			attr_dev(input0, "max", "100");
-    			add_location(input0, file, 53, 2, 1085);
-    			add_location(section0, file, 50, 1, 1001);
+    			add_location(input0, file, 53, 4, 1108);
+    			add_location(section0, file, 50, 2, 1018);
     			attr_dev(label1, "for", "02");
-    			add_location(label1, file, 57, 2, 1216);
+    			add_location(label1, file, 57, 4, 1247);
     			attr_dev(input1, "id", "02");
     			attr_dev(input1, "type", "range");
     			attr_dev(input1, "min", "0");
     			attr_dev(input1, "max", "100");
-    			add_location(input1, file, 58, 2, 1255);
-    			add_location(section1, file, 55, 1, 1169);
-    			add_location(main, file, 49, 0, 993);
+    			add_location(input1, file, 58, 4, 1288);
+    			add_location(section1, file, 55, 2, 1196);
+    			add_location(main, file, 49, 0, 1009);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MeterProps, PickType } from './@types'
+  import type { MeterProps, PickType } from './index'
   import SpeedMeter from './components/SpeedMeter.svelte'
 
   const meterProps:MeterProps = {
@@ -14,7 +14,7 @@
     scaleCoefficient: 10,
     guageLimit: 270,
     redzone: 21
-	}
+  }
 
   const meterProps02:MeterProps = {
     guageHeight: 340,
@@ -28,7 +28,7 @@
     scaleCoefficient: 0.1,
     guageLimit: 9000,
     redzone: 60
-	}
+  }
 
   /** value changes */
   export let meterValue:PickType<MeterProps, 'currentValue'> = 0
