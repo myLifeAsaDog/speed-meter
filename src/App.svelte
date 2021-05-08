@@ -3,31 +3,37 @@
   import SpeedMeter from './components/SpeedMeter.svelte'
 
   const meterProps:MeterProps = {
-    guageHeight: 300,
-    guageWidth: 300,
-    guageStart: -30,
-    guageEnd: 210,
-    guageScales: 27,
-    guageUnits: 'km/h',
-    guageInterval: 3,
+    gaugeHeight: 300,
+    gaugeWidth: 300,
+    gaugeStart: -30,
+    gaugeEnd: 210,
+    gaugeScales: 27,
+    gaugeUnits: 'km/h',
+    gaugeInterval: 3,
     currentValue: 0,
     scaleCoefficient: 10,
-    guageLimit: 270,
-    redzone: 21
+    gaugeLimit: 270,
+    redzone: 21,
+    gaugeOutlineColor: '#444444',
+    gaugeColor: '#ffffff',
+    gaugeBackgroundColor: 'linear-gradient(180deg, #444444 0%, #000000 100%)'
   }
 
   const meterProps02:MeterProps = {
-    guageHeight: 340,
-    guageWidth: 340,
-    guageStart: 30,
-    guageEnd: 210,
-    guageScales: 90,
-    guageUnits: 'x1000 rpm',
-    guageInterval: 10,
+    gaugeHeight: 300,
+    gaugeWidth: 300,
+    gaugeStart: 30,
+    gaugeEnd: 210,
+    gaugeScales: 90,
+    gaugeUnits: 'x1000 rpm',
+    gaugeInterval: 10,
     currentValue: 0,
     scaleCoefficient: 0.1,
-    guageLimit: 9000,
-    redzone: 60
+    gaugeLimit: 9000,
+    redzone: 60,
+    gaugeOutlineColor: '#cccccc',
+    gaugeColor: '#555555',
+    gaugeBackgroundColor: 'linear-gradient(180deg, #eeeeee 0%, #f1f1f1 100%)'
   }
 
   /** value changes */

@@ -430,30 +430,30 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
-    	child_ctx[18] = i;
+    	child_ctx[19] = list[i];
+    	child_ctx[21] = i;
     	return child_ctx;
     }
 
-    // (137:10) {#if i % guageInterval === 0}
+    // (142:10) {#if i % gaugeInterval === 0}
     function create_if_block(ctx) {
     	let span;
-    	let t_value = /*i*/ ctx[18] * /*scaleCoefficient*/ ctx[4] + "";
+    	let t_value = /*i*/ ctx[21] * /*scaleCoefficient*/ ctx[4] + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "svelte-ro6cu1");
-    			add_location(span, file$1, 136, 39, 3792);
+    			attr_dev(span, "class", "svelte-1eoxkun");
+    			add_location(span, file$1, 141, 39, 4103);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
     			append_dev(span, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*scaleCoefficient*/ 16 && t_value !== (t_value = /*i*/ ctx[18] * /*scaleCoefficient*/ ctx[4] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*scaleCoefficient*/ 16 && t_value !== (t_value = /*i*/ ctx[21] * /*scaleCoefficient*/ ctx[4] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(span);
@@ -464,19 +464,19 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(137:10) {#if i % guageInterval === 0}",
+    		source: "(142:10) {#if i % gaugeInterval === 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (132:8) {#each Array(guageScales + 1) as _,i }
+    // (137:8) {#each Array(gaugeScales + 1) as _,i }
     function create_each_block(ctx) {
     	let li;
     	let t;
     	let li_style_value;
-    	let if_block = /*i*/ ctx[18] % /*guageInterval*/ ctx[2] === 0 && create_if_block(ctx);
+    	let if_block = /*i*/ ctx[21] % /*gaugeInterval*/ ctx[2] === 0 && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -484,14 +484,14 @@ var app = (function () {
     			if (if_block) if_block.c();
     			t = space();
 
-    			attr_dev(li, "style", li_style_value = "\r\n          " + (/*i*/ ctx[18] % /*guageInterval*/ ctx[2]
+    			attr_dev(li, "style", li_style_value = "\r\n          " + (/*i*/ ctx[21] % /*gaugeInterval*/ ctx[2]
     			? "--scale-width:3%;"
-    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[18] >= /*redzone*/ ctx[5]
+    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[21] >= /*redzone*/ ctx[5]
     			? "--scale-bg:#ff3333;"
-    			: "--scale-bg:#ffffff;") + "\r\n          --guage-tick:" + /*i*/ ctx[18] + ";");
+    			: `--scale-bg:${/*gaugeColor*/ ctx[6]};`) + "\r\n          --gauge-tick:" + /*i*/ ctx[21] + ";");
 
-    			attr_dev(li, "class", "svelte-ro6cu1");
-    			add_location(li, file$1, 132, 8, 3568);
+    			attr_dev(li, "class", "svelte-1eoxkun");
+    			add_location(li, file$1, 137, 8, 3873);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -499,7 +499,7 @@ var app = (function () {
     			append_dev(li, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*i*/ ctx[18] % /*guageInterval*/ ctx[2] === 0) {
+    			if (/*i*/ ctx[21] % /*gaugeInterval*/ ctx[2] === 0) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -512,11 +512,11 @@ var app = (function () {
     				if_block = null;
     			}
 
-    			if (dirty & /*guageInterval, redzone*/ 36 && li_style_value !== (li_style_value = "\r\n          " + (/*i*/ ctx[18] % /*guageInterval*/ ctx[2]
+    			if (dirty & /*gaugeInterval, redzone, gaugeColor*/ 100 && li_style_value !== (li_style_value = "\r\n          " + (/*i*/ ctx[21] % /*gaugeInterval*/ ctx[2]
     			? "--scale-width:3%;"
-    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[18] >= /*redzone*/ ctx[5]
+    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[21] >= /*redzone*/ ctx[5]
     			? "--scale-bg:#ff3333;"
-    			: "--scale-bg:#ffffff;") + "\r\n          --guage-tick:" + /*i*/ ctx[18] + ";")) {
+    			: `--scale-bg:${/*gaugeColor*/ ctx[6]};`) + "\r\n          --gauge-tick:" + /*i*/ ctx[21] + ";")) {
     				attr_dev(li, "style", li_style_value);
     			}
     		},
@@ -530,7 +530,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(132:8) {#each Array(guageScales + 1) as _,i }",
+    		source: "(137:8) {#each Array(gaugeScales + 1) as _,i }",
     		ctx
     	});
 
@@ -546,12 +546,12 @@ var app = (function () {
     	let aside;
     	let t1;
     	let p;
-    	let t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GUAGE_COEFFICIENT*/ ctx[7]) + "";
+    	let t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GAUGE_COEFFICIENT*/ ctx[8]) + "";
     	let t2;
     	let t3;
     	let span;
     	let t4;
-    	let each_value = Array(/*guageScales*/ ctx[0] + 1);
+    	let each_value = Array(/*gaugeScales*/ ctx[0] + 1);
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -577,22 +577,22 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			span = element("span");
-    			t4 = text(/*guageUnits*/ ctx[1]);
-    			attr_dev(ol, "class", "svelte-ro6cu1");
-    			add_location(ol, file$1, 130, 6, 3498);
-    			attr_dev(aside, "class", "needle svelte-ro6cu1");
-    			add_location(aside, file$1, 140, 6, 3885);
-    			attr_dev(span, "class", "svelte-ro6cu1");
-    			add_location(span, file$1, 143, 8, 4006);
-    			attr_dev(p, "class", "value svelte-ro6cu1");
-    			add_location(p, file$1, 141, 6, 3923);
-    			attr_dev(div0, "class", "outline svelte-ro6cu1");
-    			add_location(div0, file$1, 129, 4, 3469);
-    			attr_dev(div1, "class", "speedMeter svelte-ro6cu1");
-    			add_location(div1, file$1, 128, 2, 3439);
-    			attr_dev(div2, "class", "speedMeterWrapper svelte-ro6cu1");
-    			attr_dev(div2, "style", /*cssVarStyles*/ ctx[6]);
-    			add_location(div2, file$1, 127, 0, 3381);
+    			t4 = text(/*gaugeUnits*/ ctx[1]);
+    			attr_dev(ol, "class", "svelte-1eoxkun");
+    			add_location(ol, file$1, 135, 6, 3803);
+    			attr_dev(aside, "class", "needle svelte-1eoxkun");
+    			add_location(aside, file$1, 145, 6, 4196);
+    			attr_dev(span, "class", "svelte-1eoxkun");
+    			add_location(span, file$1, 148, 8, 4317);
+    			attr_dev(p, "class", "value svelte-1eoxkun");
+    			add_location(p, file$1, 146, 6, 4234);
+    			attr_dev(div0, "class", "outline svelte-1eoxkun");
+    			add_location(div0, file$1, 134, 4, 3774);
+    			attr_dev(div1, "class", "speedMeter svelte-1eoxkun");
+    			add_location(div1, file$1, 133, 2, 3744);
+    			attr_dev(div2, "class", "speedMeterWrapper svelte-1eoxkun");
+    			attr_dev(div2, "style", /*cssVarStyles*/ ctx[7]);
+    			add_location(div2, file$1, 132, 0, 3686);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -617,8 +617,8 @@ var app = (function () {
     			append_dev(span, t4);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*guageInterval, redzone, scaleCoefficient, guageScales*/ 53) {
-    				each_value = Array(/*guageScales*/ ctx[0] + 1);
+    			if (dirty & /*gaugeInterval, redzone, gaugeColor, scaleCoefficient, gaugeScales*/ 117) {
+    				each_value = Array(/*gaugeScales*/ ctx[0] + 1);
     				validate_each_argument(each_value);
     				let i;
 
@@ -641,11 +641,11 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*currentValue*/ 8 && t2_value !== (t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GUAGE_COEFFICIENT*/ ctx[7]) + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*guageUnits*/ 2) set_data_dev(t4, /*guageUnits*/ ctx[1]);
+    			if (dirty & /*currentValue*/ 8 && t2_value !== (t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GAUGE_COEFFICIENT*/ ctx[8]) + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*gaugeUnits*/ 2) set_data_dev(t4, /*gaugeUnits*/ ctx[1]);
 
-    			if (dirty & /*cssVarStyles*/ 64) {
-    				attr_dev(div2, "style", /*cssVarStyles*/ ctx[6]);
+    			if (dirty & /*cssVarStyles*/ 128) {
+    				attr_dev(div2, "style", /*cssVarStyles*/ ctx[7]);
     			}
     		},
     		i: noop,
@@ -674,48 +674,57 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("SpeedMeter", slots, []);
     	
-    	let { guageHeight = 200 } = $$props;
-    	let { guageWidth = 200 } = $$props;
-    	let { guageStart = 0 } = $$props;
-    	let { guageEnd = 100 } = $$props;
-    	let { guageScales = 10 } = $$props;
-    	let { guageUnits = "mph" } = $$props;
-    	let { guageInterval = 10 } = $$props;
+    	let { gaugeHeight = 200 } = $$props;
+    	let { gaugeWidth = 200 } = $$props;
+    	let { gaugeStart = 0 } = $$props;
+    	let { gaugeEnd = 100 } = $$props;
+    	let { gaugeScales = 10 } = $$props;
+    	let { gaugeUnits = "mph" } = $$props;
+    	let { gaugeInterval = 10 } = $$props;
     	let { currentValue = 0 } = $$props;
     	let { scaleCoefficient = 10 } = $$props;
-    	let { guageLimit = 100 } = $$props;
+    	let { gaugeLimit = 100 } = $$props;
     	let { redzone = 100 } = $$props;
-    	const GUAGE_RANGE = guageEnd - guageStart;
-    	const GUAGE_COEFFICIENT = guageLimit / 100;
-    	const SCALE_ORIGIN = `${guageHeight / 2 - OUTLINE_BORDER / 2}px 0px`;
+    	let { gaugeOutlineColor = "#444444" } = $$props;
+    	let { gaugeColor = "#ffffff" } = $$props;
+    	let { gaugeBackgroundColor = "linear-gradient(180deg, #444444 0%, #000000 100%)" } = $$props;
+    	const GAUGE_RANGE = gaugeEnd - gaugeStart;
+    	const GAUGE_COEFFICIENT = gaugeLimit / 100;
+    	const SCALE_ORIGIN = `${gaugeHeight / 2 - OUTLINE_BORDER / 2}px 0px`;
 
     	/** CSS Variables */
     	const styles = {
-    		"guage-height": `${guageHeight}px`,
-    		"guage-width": `${guageWidth}px`,
-    		"scale-deg": `${GUAGE_RANGE / guageScales}deg`,
-    		"offset-deg": `${guageStart}deg`,
+    		"gauge-height": `${gaugeHeight}px`,
+    		"gauge-width": `${gaugeWidth}px`,
+    		"scale-deg": `${GAUGE_RANGE / gaugeScales}deg`,
+    		"offset-deg": `${gaugeStart}deg`,
     		"outline-border": `${OUTLINE_BORDER}px`,
     		"scale-height": `${SCALE_HEIGHT}px`,
     		"scale-origin": SCALE_ORIGIN,
-    		"meter-deg": "90deg"
+    		"meter-deg": "90deg",
+    		"gauge-outline-color": gaugeOutlineColor,
+    		"gauge-color": gaugeColor,
+    		"gauge-background-color": gaugeBackgroundColor
     	};
 
     	/** Reactive variables */
     	let cssVarStyles;
 
     	const writable_props = [
-    		"guageHeight",
-    		"guageWidth",
-    		"guageStart",
-    		"guageEnd",
-    		"guageScales",
-    		"guageUnits",
-    		"guageInterval",
+    		"gaugeHeight",
+    		"gaugeWidth",
+    		"gaugeStart",
+    		"gaugeEnd",
+    		"gaugeScales",
+    		"gaugeUnits",
+    		"gaugeInterval",
     		"currentValue",
     		"scaleCoefficient",
-    		"guageLimit",
-    		"redzone"
+    		"gaugeLimit",
+    		"redzone",
+    		"gaugeOutlineColor",
+    		"gaugeColor",
+    		"gaugeBackgroundColor"
     	];
 
     	Object_1.keys($$props).forEach(key => {
@@ -723,53 +732,62 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("guageHeight" in $$props) $$invalidate(8, guageHeight = $$props.guageHeight);
-    		if ("guageWidth" in $$props) $$invalidate(9, guageWidth = $$props.guageWidth);
-    		if ("guageStart" in $$props) $$invalidate(10, guageStart = $$props.guageStart);
-    		if ("guageEnd" in $$props) $$invalidate(11, guageEnd = $$props.guageEnd);
-    		if ("guageScales" in $$props) $$invalidate(0, guageScales = $$props.guageScales);
-    		if ("guageUnits" in $$props) $$invalidate(1, guageUnits = $$props.guageUnits);
-    		if ("guageInterval" in $$props) $$invalidate(2, guageInterval = $$props.guageInterval);
+    		if ("gaugeHeight" in $$props) $$invalidate(9, gaugeHeight = $$props.gaugeHeight);
+    		if ("gaugeWidth" in $$props) $$invalidate(10, gaugeWidth = $$props.gaugeWidth);
+    		if ("gaugeStart" in $$props) $$invalidate(11, gaugeStart = $$props.gaugeStart);
+    		if ("gaugeEnd" in $$props) $$invalidate(12, gaugeEnd = $$props.gaugeEnd);
+    		if ("gaugeScales" in $$props) $$invalidate(0, gaugeScales = $$props.gaugeScales);
+    		if ("gaugeUnits" in $$props) $$invalidate(1, gaugeUnits = $$props.gaugeUnits);
+    		if ("gaugeInterval" in $$props) $$invalidate(2, gaugeInterval = $$props.gaugeInterval);
     		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
     		if ("scaleCoefficient" in $$props) $$invalidate(4, scaleCoefficient = $$props.scaleCoefficient);
-    		if ("guageLimit" in $$props) $$invalidate(12, guageLimit = $$props.guageLimit);
+    		if ("gaugeLimit" in $$props) $$invalidate(13, gaugeLimit = $$props.gaugeLimit);
     		if ("redzone" in $$props) $$invalidate(5, redzone = $$props.redzone);
+    		if ("gaugeOutlineColor" in $$props) $$invalidate(14, gaugeOutlineColor = $$props.gaugeOutlineColor);
+    		if ("gaugeColor" in $$props) $$invalidate(6, gaugeColor = $$props.gaugeColor);
+    		if ("gaugeBackgroundColor" in $$props) $$invalidate(15, gaugeBackgroundColor = $$props.gaugeBackgroundColor);
     	};
 
     	$$self.$capture_state = () => ({
-    		guageHeight,
-    		guageWidth,
-    		guageStart,
-    		guageEnd,
-    		guageScales,
-    		guageUnits,
-    		guageInterval,
+    		gaugeHeight,
+    		gaugeWidth,
+    		gaugeStart,
+    		gaugeEnd,
+    		gaugeScales,
+    		gaugeUnits,
+    		gaugeInterval,
     		currentValue,
     		scaleCoefficient,
-    		guageLimit,
+    		gaugeLimit,
     		redzone,
+    		gaugeOutlineColor,
+    		gaugeColor,
+    		gaugeBackgroundColor,
     		OUTLINE_BORDER,
     		SCALE_HEIGHT,
-    		GUAGE_RANGE,
-    		GUAGE_COEFFICIENT,
+    		GAUGE_RANGE,
+    		GAUGE_COEFFICIENT,
     		SCALE_ORIGIN,
     		styles,
     		cssVarStyles
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("guageHeight" in $$props) $$invalidate(8, guageHeight = $$props.guageHeight);
-    		if ("guageWidth" in $$props) $$invalidate(9, guageWidth = $$props.guageWidth);
-    		if ("guageStart" in $$props) $$invalidate(10, guageStart = $$props.guageStart);
-    		if ("guageEnd" in $$props) $$invalidate(11, guageEnd = $$props.guageEnd);
-    		if ("guageScales" in $$props) $$invalidate(0, guageScales = $$props.guageScales);
-    		if ("guageUnits" in $$props) $$invalidate(1, guageUnits = $$props.guageUnits);
-    		if ("guageInterval" in $$props) $$invalidate(2, guageInterval = $$props.guageInterval);
+    		if ("gaugeHeight" in $$props) $$invalidate(9, gaugeHeight = $$props.gaugeHeight);
+    		if ("gaugeWidth" in $$props) $$invalidate(10, gaugeWidth = $$props.gaugeWidth);
+    		if ("gaugeStart" in $$props) $$invalidate(11, gaugeStart = $$props.gaugeStart);
+    		if ("gaugeEnd" in $$props) $$invalidate(12, gaugeEnd = $$props.gaugeEnd);
+    		if ("gaugeScales" in $$props) $$invalidate(0, gaugeScales = $$props.gaugeScales);
+    		if ("gaugeUnits" in $$props) $$invalidate(1, gaugeUnits = $$props.gaugeUnits);
+    		if ("gaugeInterval" in $$props) $$invalidate(2, gaugeInterval = $$props.gaugeInterval);
     		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
     		if ("scaleCoefficient" in $$props) $$invalidate(4, scaleCoefficient = $$props.scaleCoefficient);
-    		if ("guageLimit" in $$props) $$invalidate(12, guageLimit = $$props.guageLimit);
+    		if ("gaugeLimit" in $$props) $$invalidate(13, gaugeLimit = $$props.gaugeLimit);
     		if ("redzone" in $$props) $$invalidate(5, redzone = $$props.redzone);
-    		if ("cssVarStyles" in $$props) $$invalidate(6, cssVarStyles = $$props.cssVarStyles);
+    		if ("gaugeOutlineColor" in $$props) $$invalidate(14, gaugeOutlineColor = $$props.gaugeOutlineColor);
+    		if ("gaugeColor" in $$props) $$invalidate(6, gaugeColor = $$props.gaugeColor);
+    		if ("gaugeBackgroundColor" in $$props) $$invalidate(15, gaugeBackgroundColor = $$props.gaugeBackgroundColor);
+    		if ("cssVarStyles" in $$props) $$invalidate(7, cssVarStyles = $$props.cssVarStyles);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -777,28 +795,31 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*currentValue, guageStart, styles*/ 9224) {
+    		if ($$self.$$.dirty & /*currentValue, gaugeStart, styles*/ 67592) {
     			{
-    				$$invalidate(13, styles["meter-deg"] = `${GUAGE_RANGE / 100 * currentValue + guageStart}deg`, styles);
-    				$$invalidate(6, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
+    				$$invalidate(16, styles["meter-deg"] = `${GAUGE_RANGE / 100 * currentValue + gaugeStart}deg`, styles);
+    				$$invalidate(7, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
     			}
     		}
     	};
 
     	return [
-    		guageScales,
-    		guageUnits,
-    		guageInterval,
+    		gaugeScales,
+    		gaugeUnits,
+    		gaugeInterval,
     		currentValue,
     		scaleCoefficient,
     		redzone,
+    		gaugeColor,
     		cssVarStyles,
-    		GUAGE_COEFFICIENT,
-    		guageHeight,
-    		guageWidth,
-    		guageStart,
-    		guageEnd,
-    		guageLimit,
+    		GAUGE_COEFFICIENT,
+    		gaugeHeight,
+    		gaugeWidth,
+    		gaugeStart,
+    		gaugeEnd,
+    		gaugeLimit,
+    		gaugeOutlineColor,
+    		gaugeBackgroundColor,
     		styles
     	];
     }
@@ -808,17 +829,20 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			guageHeight: 8,
-    			guageWidth: 9,
-    			guageStart: 10,
-    			guageEnd: 11,
-    			guageScales: 0,
-    			guageUnits: 1,
-    			guageInterval: 2,
+    			gaugeHeight: 9,
+    			gaugeWidth: 10,
+    			gaugeStart: 11,
+    			gaugeEnd: 12,
+    			gaugeScales: 0,
+    			gaugeUnits: 1,
+    			gaugeInterval: 2,
     			currentValue: 3,
     			scaleCoefficient: 4,
-    			guageLimit: 12,
-    			redzone: 5
+    			gaugeLimit: 13,
+    			redzone: 5,
+    			gaugeOutlineColor: 14,
+    			gaugeColor: 6,
+    			gaugeBackgroundColor: 15
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -829,59 +853,59 @@ var app = (function () {
     		});
     	}
 
-    	get guageHeight() {
+    	get gaugeHeight() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageHeight(value) {
+    	set gaugeHeight(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get guageWidth() {
+    	get gaugeWidth() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageWidth(value) {
+    	set gaugeWidth(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get guageStart() {
+    	get gaugeStart() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageStart(value) {
+    	set gaugeStart(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get guageEnd() {
+    	get gaugeEnd() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageEnd(value) {
+    	set gaugeEnd(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get guageScales() {
+    	get gaugeScales() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageScales(value) {
+    	set gaugeScales(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get guageUnits() {
+    	get gaugeUnits() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageUnits(value) {
+    	set gaugeUnits(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get guageInterval() {
+    	get gaugeInterval() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageInterval(value) {
+    	set gaugeInterval(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -901,11 +925,11 @@ var app = (function () {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get guageLimit() {
+    	get gaugeLimit() {
     		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set guageLimit(value) {
+    	set gaugeLimit(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -914,6 +938,30 @@ var app = (function () {
     	}
 
     	set redzone(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeOutlineColor() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeOutlineColor(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeColor() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeColor(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeBackgroundColor() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeBackgroundColor(value) {
     		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -975,22 +1023,22 @@ var app = (function () {
     			t6 = space();
     			input1 = element("input");
     			attr_dev(label0, "for", "01");
-    			add_location(label0, file, 52, 4, 1067);
+    			add_location(label0, file, 58, 4, 1353);
     			attr_dev(input0, "id", "01");
     			attr_dev(input0, "type", "range");
     			attr_dev(input0, "min", "0");
     			attr_dev(input0, "max", "100");
-    			add_location(input0, file, 53, 4, 1108);
-    			add_location(section0, file, 50, 2, 1018);
+    			add_location(input0, file, 59, 4, 1394);
+    			add_location(section0, file, 56, 2, 1304);
     			attr_dev(label1, "for", "02");
-    			add_location(label1, file, 57, 4, 1247);
+    			add_location(label1, file, 63, 4, 1533);
     			attr_dev(input1, "id", "02");
     			attr_dev(input1, "type", "range");
     			attr_dev(input1, "min", "0");
     			attr_dev(input1, "max", "100");
-    			add_location(input1, file, 58, 4, 1288);
-    			add_location(section1, file, 55, 2, 1196);
-    			add_location(main, file, 49, 0, 1009);
+    			add_location(input1, file, 64, 4, 1574);
+    			add_location(section1, file, 61, 2, 1482);
+    			add_location(main, file, 55, 0, 1295);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1083,31 +1131,37 @@ var app = (function () {
     	
 
     	const meterProps = {
-    		guageHeight: 300,
-    		guageWidth: 300,
-    		guageStart: -30,
-    		guageEnd: 210,
-    		guageScales: 27,
-    		guageUnits: "km/h",
-    		guageInterval: 3,
+    		gaugeHeight: 300,
+    		gaugeWidth: 300,
+    		gaugeStart: -30,
+    		gaugeEnd: 210,
+    		gaugeScales: 27,
+    		gaugeUnits: "km/h",
+    		gaugeInterval: 3,
     		currentValue: 0,
     		scaleCoefficient: 10,
-    		guageLimit: 270,
-    		redzone: 21
+    		gaugeLimit: 270,
+    		redzone: 21,
+    		gaugeOutlineColor: "#444444",
+    		gaugeColor: "#ffffff",
+    		gaugeBackgroundColor: "linear-gradient(180deg, #444444 0%, #000000 100%)"
     	};
 
     	const meterProps02 = {
-    		guageHeight: 340,
-    		guageWidth: 340,
-    		guageStart: 30,
-    		guageEnd: 210,
-    		guageScales: 90,
-    		guageUnits: "x1000 rpm",
-    		guageInterval: 10,
+    		gaugeHeight: 300,
+    		gaugeWidth: 300,
+    		gaugeStart: 30,
+    		gaugeEnd: 210,
+    		gaugeScales: 90,
+    		gaugeUnits: "x1000 rpm",
+    		gaugeInterval: 10,
     		currentValue: 0,
     		scaleCoefficient: 0.1,
-    		guageLimit: 9000,
-    		redzone: 60
+    		gaugeLimit: 9000,
+    		redzone: 60,
+    		gaugeOutlineColor: "#cccccc",
+    		gaugeColor: "#555555",
+    		gaugeBackgroundColor: "linear-gradient(180deg, #eeeeee 0%, #f1f1f1 100%)"
     	};
 
     	let { meterValue = 0 } = $$props;
