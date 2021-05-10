@@ -40,13 +40,14 @@
   const reducer = (
     accumulator:{ name:string, value:string }[], 
     currentValue:string[], 
-    index:number) => { 
-    accumulator[index] = { name: currentValue[0], value: currentValue[1] };
-    return accumulator;
+    index:number
+    ) => { 
+      accumulator[index] = { name: currentValue[0], value: currentValue[1] }
+      return accumulator;
   } 
 
-  const meterOptions_01 = Object.entries(meterProps_01).reduce(reducer ,[]);
-  const meterOptions_02 = Object.entries(meterProps_02).reduce(reducer ,[]);
+  const meterOptions_01 = Object.entries(meterProps_01).reduce(reducer ,[])
+  const meterOptions_02 = Object.entries(meterProps_02).reduce(reducer ,[])
 
   /** value changes */
   export let meterValue_01:PickType<MeterProps, 'currentValue'> = 0
