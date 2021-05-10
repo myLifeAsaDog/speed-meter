@@ -2,7 +2,7 @@
   import type { MeterProps, PickType } from './index'
   import SpeedMeter from './components/SpeedMeter.svelte'
 
-  const meterProps:MeterProps = {
+  const meterProps_01:MeterProps = {
     gaugeHeight: 300,
     gaugeWidth: 300,
     gaugeStart: -30,
@@ -19,7 +19,7 @@
     gaugeBackgroundColor: 'linear-gradient(180deg, #444444 0%, #000000 100%)'
   }
 
-  const meterProps02:MeterProps = {
+  const meterProps_02:MeterProps = {
     gaugeHeight: 300,
     gaugeWidth: 300,
     gaugeStart: 30,
@@ -33,16 +33,28 @@
     redzone: 60,
     gaugeOutlineColor: '#cccccc',
     gaugeColor: '#555555',
-    gaugeBackgroundColor: 'linear-gradient(180deg, #eeeeee 0%, #f1f1f1 100%)'
+    gaugeBackgroundColor: '#f1f1f1'
   }
 
+  /** Formatting Options */
+  const reducer = (
+    accumulator:{ name:string, value:string }[], 
+    currentValue:string[], 
+    index:number) => { 
+    accumulator[index] = { name: currentValue[0], value: currentValue[1] };
+    return accumulator;
+  } 
+
+  const meterOptions_01 = Object.entries(meterProps_01).reduce(reducer ,[]);
+  const meterOptions_02 = Object.entries(meterProps_02).reduce(reducer ,[]);
+
   /** value changes */
-  export let meterValue:PickType<MeterProps, 'currentValue'> = 0
-  export let meterValue02:PickType<MeterProps, 'currentValue'> = 0
+  export let meterValue_01:PickType<MeterProps, 'currentValue'> = 0
+  export let meterValue_02:PickType<MeterProps, 'currentValue'> = 0
 
   $: {
-    meterProps['currentValue'] = meterValue
-    meterProps02['currentValue'] = meterValue02
+    meterProps_01['currentValue'] = meterValue_01
+    meterProps_02['currentValue'] = meterValue_02
   }
 </script>
 
@@ -56,17 +68,49 @@
     background: #aaaaaa;
     padding: 40px;
   }
+  section {
+    display: flex;
+    margin: 40px 0;
+  }
+  table th {
+    padding: 0 8px;
+    font-weight: normal;
+    text-align: right;
+  }
+  table td {
+    padding: 0 8px;
+  }
 </style>
 
 <main>
   <section>
-    <SpeedMeter {...meterProps} />
-    <label for="01">現在値(0-100固定)</label>
-    <input id="01" type="range" min="0" max="100" bind:value={meterValue} />
+    <div>
+      <SpeedMeter {...meterProps_01} />
+      <label for="01">現在値(0-100固定)</label>
+      <input id="01" type="range" min="0" max="100" bind:value={meterValue_01} />
+    </div>
+    <table>
+      {#each meterOptions_01 as option}
+      <tr>
+        <th>{option.name}</th>
+        <td>{option.value}</td>
+      </tr>
+      {/each}
+    </table>
   </section>
   <section>
-    <SpeedMeter {...meterProps02} />
-    <label for="02">現在値(0-100固定)</label>
-    <input id="02" type="range" min="0" max="100" bind:value={meterValue02} />
+    <div>
+      <SpeedMeter {...meterProps_02} />
+      <label for="02">現在値(0-100固定)</label>
+      <input id="02" type="range" min="0" max="100" bind:value={meterValue_02} />
+    </div>
+    <table>
+      {#each meterOptions_02 as option}
+      <tr>
+        <th>{option.name}</th>
+        <td>{option.value}</td>
+      </tr>
+      {/each}
+    </table>
   </section>
 </main>
