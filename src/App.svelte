@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { MeterProps, PickType } from './index'
+  import type { MeterProps } from './index'
   import SpeedMeter from './components/SpeedMeter.svelte'
 
-  const meterProps_01:MeterProps = {
+  const meterProps_01: MeterProps = {
     gaugeHeight: 300,
     gaugeWidth: 300,
     gaugeStart: -30,
@@ -19,7 +19,7 @@
     gaugeBackgroundColor: 'linear-gradient(180deg, #444444 0%, #000000 100%)'
   }
 
-  const meterProps_02:MeterProps = {
+  const meterProps_02: MeterProps = {
     gaugeHeight: 300,
     gaugeWidth: 300,
     gaugeStart: 30,
@@ -38,9 +38,9 @@
 
   /** Formatting Options */
   const reducer = (
-    accumulator:{ name:string, value:string }[], 
-    currentValue:string[], 
-    index:number
+    accumulator: { name: string, value: string }[], 
+    currentValue: string[], 
+    index: number
     ) => { 
       accumulator[index] = { name: currentValue[0], value: currentValue[1] }
       return accumulator;
@@ -50,8 +50,8 @@
   const meterOptions_02 = Object.entries(meterProps_02).reduce(reducer ,[])
 
   /** value changes */
-  export let meterValue_01:PickType<MeterProps, 'currentValue'> = 0
-  export let meterValue_02:PickType<MeterProps, 'currentValue'> = 0
+  export let meterValue_01: MeterProps['currentValue'] = 0
+  export let meterValue_02: MeterProps['currentValue'] = 0
 
   $: {
     meterProps_01['currentValue'] = meterValue_01

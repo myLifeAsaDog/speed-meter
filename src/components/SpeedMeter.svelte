@@ -1,32 +1,31 @@
 <script lang="ts">
-  import type { MeterProps, PickType, StyleProps } from '../index'
+  import type { MeterProps, StyleProps } from '../index'
   
   /** PROPS */
-  export let gaugeHeight:PickType<MeterProps, 'gaugeHeight'> = 200
-  export let gaugeWidth:PickType<MeterProps, 'gaugeWidth'> = 200
-  export let gaugeStart:PickType<MeterProps, 'gaugeStart'> = 0
-  export let gaugeEnd:PickType<MeterProps, 'gaugeEnd'> = 100
-  export let gaugeScales:PickType<MeterProps, 'gaugeScales'> = 10
-  export let gaugeUnits:PickType<MeterProps, 'gaugeUnits'> = 'mph'
-  export let gaugeInterval:PickType<MeterProps, 'gaugeInterval'> = 10
-  export let currentValue:PickType<MeterProps, 'currentValue'> = 0
-  export let scaleCoefficient:PickType<MeterProps, 'scaleCoefficient'> = 10
-  export let gaugeLimit:PickType<MeterProps, 'gaugeLimit'> = 100
-  export let redzone:PickType<MeterProps, 'redzone'> = 100
-  export let gaugeOutlineColor:PickType<MeterProps, 'gaugeOutlineColor'> = '#444444'
-  export let gaugeColor:PickType<MeterProps, 'gaugeColor'> = '#ffffff'
-  export let gaugeBackgroundColor:PickType<MeterProps, 'gaugeBackgroundColor'> = 'linear-gradient(180deg, #444444 0%, #000000 100%)'
-
+  export let gaugeHeight: MeterProps['gaugeHeight'] = 200
+  export let gaugeWidth: MeterProps['gaugeWidth'] = 200
+  export let gaugeStart: MeterProps['gaugeStart'] = 0
+  export let gaugeEnd: MeterProps['gaugeEnd'] = 100
+  export let gaugeScales: MeterProps['gaugeScales'] = 10
+  export let gaugeUnits: MeterProps['gaugeUnits'] = 'mph'
+  export let gaugeInterval: MeterProps['gaugeInterval'] = 10
+  export let currentValue: MeterProps['currentValue'] = 0
+  export let scaleCoefficient: MeterProps['scaleCoefficient'] = 10
+  export let gaugeLimit: MeterProps['gaugeLimit'] = 100
+  export let redzone: MeterProps['redzone'] = 100
+  export let gaugeOutlineColor: MeterProps['gaugeOutlineColor'] = '#444444'
+  export let gaugeColor: MeterProps['gaugeColor'] = '#ffffff'
+  export let gaugeBackgroundColor: MeterProps['gaugeBackgroundColor'] = 'linear-gradient(180deg, #444444 0%, #000000 100%)'
 
   /** CONSTANTS */
-  const OUTLINE_BORDER:number = 4
-  const SCALE_HEIGHT:number = 2
+  const OUTLINE_BORDER: number = 4
+  const SCALE_HEIGHT: number = 2
   const GAUGE_RANGE = gaugeEnd - gaugeStart
   const GAUGE_COEFFICIENT = gaugeLimit / 100
   const SCALE_ORIGIN = `${gaugeHeight / 2 - OUTLINE_BORDER / 2}px 0px`
 
   /** CSS Variables */
-  const styles:StyleProps = {
+  const styles: StyleProps = {
     'gauge-height': `${gaugeHeight}px`,
     'gauge-width': `${gaugeWidth}px`,
     'scale-deg': `${GAUGE_RANGE / gaugeScales}deg`,
@@ -41,7 +40,7 @@
   }
 
   /** Reactive variables */
-  let cssVarStyles:string
+  let cssVarStyles: string
 
   $: {
     styles['meter-deg'] = `${(GAUGE_RANGE / 100) * currentValue + gaugeStart}deg`

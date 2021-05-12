@@ -15,8 +15,6 @@ export interface MeterProps {
   gaugeBackgroundColor?: string;  //背景色
 }
 
-export type PickType<T, K extends keyof T> = T[K];
-
 export interface StyleProps {
   'gauge-height': string; 
   'gauge-width': string;

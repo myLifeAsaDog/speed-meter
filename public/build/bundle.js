@@ -1,2 +1,1511 @@
-var app=function(){"use strict";function e(){}function t(e,t){for(const n in t)e[n]=t[n];return e}function n(e){return e()}function r(){return Object.create(null)}function l(e){e.forEach(n)}function o(e){return"function"==typeof e}function u(e,t){return e!=e?t==t:e!==t||e&&"object"==typeof e||"function"==typeof e}function a(e,t){e.appendChild(t)}function g(e,t,n){e.insertBefore(t,n||null)}function c(e){e.parentNode.removeChild(e)}function i(e,t){for(let n=0;n<e.length;n+=1)e[n]&&e[n].d(t)}function s(e){return document.createElement(e)}function f(e){return document.createTextNode(e)}function d(){return f(" ")}function h(e,t,n,r){return e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)}function p(e,t,n){null==n?e.removeAttribute(t):e.getAttribute(t)!==n&&e.setAttribute(t,n)}function m(e){return""===e?null:+e}function $(e,t){t=""+t,e.wholeText!==t&&(e.data=t)}function v(e,t){e.value=null==t?"":t}let x;function b(e){x=e}const y=[],C=[],k=[],_=[],V=Promise.resolve();let E=!1;function S(e){k.push(e)}let w=!1;const O=new Set;function j(){if(!w){w=!0;do{for(let e=0;e<y.length;e+=1){const t=y[e];b(t),L(t.$$)}for(b(null),y.length=0;C.length;)C.pop()();for(let e=0;e<k.length;e+=1){const t=k[e];O.has(t)||(O.add(t),t())}k.length=0}while(y.length);for(;_.length;)_.pop()();E=!1,w=!1,O.clear()}}function L(e){if(null!==e.fragment){e.update(),l(e.before_update);const t=e.dirty;e.dirty=[-1],e.fragment&&e.fragment.p(e.ctx,t),e.after_update.forEach(S)}}const B=new Set;function W(e,t){e&&e.i&&(B.delete(e),e.i(t))}function z(e,t,n,r){if(e&&e.o){if(B.has(e))return;B.add(e),undefined.c.push((()=>{B.delete(e),r&&(n&&e.d(1),r())})),e.o(t)}}function A(e,t){const n={},r={},l={$$scope:1};let o=e.length;for(;o--;){const u=e[o],a=t[o];if(a){for(const e in u)e in a||(r[e]=1);for(const e in a)l[e]||(n[e]=a[e],l[e]=1);e[o]=a}else for(const e in u)l[e]=1}for(const e in r)e in n||(n[e]=void 0);return n}function H(e){return"object"==typeof e&&null!==e?e:{}}function I(e){e&&e.c()}function U(e,t,r,u){const{fragment:a,on_mount:g,on_destroy:c,after_update:i}=e.$$;a&&a.m(t,r),u||S((()=>{const t=g.map(n).filter(o);c?c.push(...t):l(t),e.$$.on_mount=[]})),i.forEach(S)}function M(e,t){const n=e.$$;null!==n.fragment&&(l(n.on_destroy),n.fragment&&n.fragment.d(t),n.on_destroy=n.fragment=null,n.ctx=[])}function N(e,t){-1===e.$$.dirty[0]&&(y.push(e),E||(E=!0,V.then(j)),e.$$.dirty.fill(0)),e.$$.dirty[t/31|0]|=1<<t%31}function T(t,n,o,u,a,g,i=[-1]){const s=x;b(t);const f=t.$$={fragment:null,ctx:null,props:g,update:e,not_equal:a,bound:r(),on_mount:[],on_destroy:[],on_disconnect:[],before_update:[],after_update:[],context:new Map(s?s.$$.context:n.context||[]),callbacks:r(),dirty:i,skip_bound:!1};let d=!1;if(f.ctx=o?o(t,n.props||{},((e,n,...r)=>{const l=r.length?r[0]:n;return f.ctx&&a(f.ctx[e],f.ctx[e]=l)&&(!f.skip_bound&&f.bound[e]&&f.bound[e](l),d&&N(t,e)),n})):[],f.update(),d=!0,l(f.before_update),f.fragment=!!u&&u(f.ctx),n.target){if(n.hydrate){const e=function(e){return Array.from(e.childNodes)}(n.target);f.fragment&&f.fragment.l(e),e.forEach(c)}else f.fragment&&f.fragment.c();n.intro&&W(t.$$.fragment),U(t,n.target,n.anchor,n.customElement),j()}b(s)}class q{$destroy(){M(this,1),this.$destroy=e}$on(e,t){const n=this.$$.callbacks[e]||(this.$$.callbacks[e]=[]);return n.push(t),()=>{const e=n.indexOf(t);-1!==e&&n.splice(e,1)}}$set(e){var t;this.$$set&&(t=e,0!==Object.keys(t).length)&&(this.$$.skip_bound=!0,this.$$set(e),this.$$.skip_bound=!1)}}function P(e,t,n){const r=e.slice();return r[19]=t[n],r[21]=n,r}function D(e){let t,n,r=e[21]*e[4]+"";return{c(){t=s("span"),n=f(r),p(t,"class","svelte-1eoxkun")},m(e,r){g(e,t,r),a(t,n)},p(e,t){16&t&&r!==(r=e[21]*e[4]+"")&&$(n,r)},d(e){e&&c(t)}}}function F(e){let t,n,r,l=e[21]%e[2]==0&&D(e);return{c(){t=s("li"),l&&l.c(),n=d(),p(t,"style",r="\r\n          "+(e[21]%e[2]?"--scale-width:3%;":"--scale-width:5%;")+"\r\n          "+(e[21]>=e[5]?"--scale-bg:#ff3333;":`--scale-bg:${e[6]};`)+"\r\n          --gauge-tick:"+e[21]+";"),p(t,"class","svelte-1eoxkun")},m(e,r){g(e,t,r),l&&l.m(t,null),a(t,n)},p(e,o){e[21]%e[2]==0?l?l.p(e,o):(l=D(e),l.c(),l.m(t,n)):l&&(l.d(1),l=null),100&o&&r!==(r="\r\n          "+(e[21]%e[2]?"--scale-width:3%;":"--scale-width:5%;")+"\r\n          "+(e[21]>=e[5]?"--scale-bg:#ff3333;":`--scale-bg:${e[6]};`)+"\r\n          --gauge-tick:"+e[21]+";")&&p(t,"style",r)},d(e){e&&c(t),l&&l.d()}}}function G(t){let n,r,l,o,u,h,m,v,x,b,y,C,k=Math.floor(t[3]*t[8])+"",_=Array(t[0]+1),V=[];for(let e=0;e<_.length;e+=1)V[e]=F(P(t,_,e));return{c(){n=s("div"),r=s("div"),l=s("div"),o=s("ol");for(let e=0;e<V.length;e+=1)V[e].c();u=d(),h=s("aside"),m=d(),v=s("p"),x=f(k),b=d(),y=s("span"),C=f(t[1]),p(o,"class","svelte-1eoxkun"),p(h,"class","needle svelte-1eoxkun"),p(y,"class","svelte-1eoxkun"),p(v,"class","value svelte-1eoxkun"),p(l,"class","outline svelte-1eoxkun"),p(r,"class","speedMeter svelte-1eoxkun"),p(n,"class","speedMeterWrapper svelte-1eoxkun"),p(n,"style",t[7])},m(e,t){g(e,n,t),a(n,r),a(r,l),a(l,o);for(let e=0;e<V.length;e+=1)V[e].m(o,null);a(l,u),a(l,h),a(l,m),a(l,v),a(v,x),a(v,b),a(v,y),a(y,C)},p(e,[t]){if(117&t){let n;for(_=Array(e[0]+1),n=0;n<_.length;n+=1){const r=P(e,_,n);V[n]?V[n].p(r,t):(V[n]=F(r),V[n].c(),V[n].m(o,null))}for(;n<V.length;n+=1)V[n].d(1);V.length=_.length}8&t&&k!==(k=Math.floor(e[3]*e[8])+"")&&$(x,k),2&t&&$(C,e[1]),128&t&&p(n,"style",e[7])},i:e,o:e,d(e){e&&c(n),i(V,e)}}}function J(e,t,n){let{gaugeHeight:r=200}=t,{gaugeWidth:l=200}=t,{gaugeStart:o=0}=t,{gaugeEnd:u=100}=t,{gaugeScales:a=10}=t,{gaugeUnits:g="mph"}=t,{gaugeInterval:c=10}=t,{currentValue:i=0}=t,{scaleCoefficient:s=10}=t,{gaugeLimit:f=100}=t,{redzone:d=100}=t,{gaugeOutlineColor:h="#444444"}=t,{gaugeColor:p="#ffffff"}=t,{gaugeBackgroundColor:m="linear-gradient(180deg, #444444 0%, #000000 100%)"}=t;const $=u-o,v=f/100,x={"gauge-height":`${r}px`,"gauge-width":`${l}px`,"scale-deg":$/a+"deg","offset-deg":`${o}deg`,"outline-border":"4px","scale-height":"2px","scale-origin":r/2-2+"px 0px","meter-deg":"90deg","gauge-outline-color":h,"gauge-color":p,"gauge-background-color":m};let b;return e.$$set=e=>{"gaugeHeight"in e&&n(9,r=e.gaugeHeight),"gaugeWidth"in e&&n(10,l=e.gaugeWidth),"gaugeStart"in e&&n(11,o=e.gaugeStart),"gaugeEnd"in e&&n(12,u=e.gaugeEnd),"gaugeScales"in e&&n(0,a=e.gaugeScales),"gaugeUnits"in e&&n(1,g=e.gaugeUnits),"gaugeInterval"in e&&n(2,c=e.gaugeInterval),"currentValue"in e&&n(3,i=e.currentValue),"scaleCoefficient"in e&&n(4,s=e.scaleCoefficient),"gaugeLimit"in e&&n(13,f=e.gaugeLimit),"redzone"in e&&n(5,d=e.redzone),"gaugeOutlineColor"in e&&n(14,h=e.gaugeOutlineColor),"gaugeColor"in e&&n(6,p=e.gaugeColor),"gaugeBackgroundColor"in e&&n(15,m=e.gaugeBackgroundColor)},e.$$.update=()=>{67592&e.$$.dirty&&(n(16,x["meter-deg"]=`${$/100*i+o}deg`,x),n(7,b=Object.entries(x).map((([e,t])=>`--${e}:${t}`)).join(";")))},[a,g,c,i,s,d,p,b,v,r,l,o,u,f,h,m,x]}class K extends q{constructor(e){super(),T(this,e,J,G,u,{gaugeHeight:9,gaugeWidth:10,gaugeStart:11,gaugeEnd:12,gaugeScales:0,gaugeUnits:1,gaugeInterval:2,currentValue:3,scaleCoefficient:4,gaugeLimit:13,redzone:5,gaugeOutlineColor:14,gaugeColor:6,gaugeBackgroundColor:15})}}function Q(e,t,n){const r=e.slice();return r[9]=t[n],r}function R(e,t,n){const r=e.slice();return r[9]=t[n],r}function X(t){let n,r,l,o,u,i,h,m=t[9].name+"",$=t[9].value+"";return{c(){n=s("tr"),r=s("th"),l=f(m),o=d(),u=s("td"),i=f($),h=d(),p(r,"class","svelte-1rna1na"),p(u,"class","svelte-1rna1na")},m(e,t){g(e,n,t),a(n,r),a(r,l),a(n,o),a(n,u),a(u,i),a(n,h)},p:e,d(e){e&&c(n)}}}function Y(t){let n,r,l,o,u,i,h,m=t[9].name+"",$=t[9].value+"";return{c(){n=s("tr"),r=s("th"),l=f(m),o=d(),u=s("td"),i=f($),h=d(),p(r,"class","svelte-1rna1na"),p(u,"class","svelte-1rna1na")},m(e,t){g(e,n,t),a(n,r),a(r,l),a(n,o),a(n,u),a(u,i),a(n,h)},p:e,d(e){e&&c(n)}}}function Z(e){let n,r,o,u,f,m,$,x,b,y,C,k,_,V,E,S,w,O,j,L,B,N,T;const q=[e[2]];let P={};for(let e=0;e<q.length;e+=1)P=t(P,q[e]);u=new K({props:P});let D=e[4],F=[];for(let t=0;t<D.length;t+=1)F[t]=X(R(e,D,t));const G=[e[3]];let J={};for(let e=0;e<G.length;e+=1)J=t(J,G[e]);V=new K({props:J});let Z=e[5],ee=[];for(let t=0;t<Z.length;t+=1)ee[t]=Y(Q(e,Z,t));return{c(){n=s("main"),r=s("section"),o=s("div"),I(u.$$.fragment),f=d(),m=s("label"),m.textContent="現在値(0-100固定)",$=d(),x=s("input"),b=d(),y=s("table");for(let e=0;e<F.length;e+=1)F[e].c();C=d(),k=s("section"),_=s("div"),I(V.$$.fragment),E=d(),S=s("label"),S.textContent="現在値(0-100固定)",w=d(),O=s("input"),j=d(),L=s("table");for(let e=0;e<ee.length;e+=1)ee[e].c();p(m,"for","01"),p(x,"id","01"),p(x,"type","range"),p(x,"min","0"),p(x,"max","100"),p(y,"class","svelte-1rna1na"),p(r,"class","svelte-1rna1na"),p(S,"for","02"),p(O,"id","02"),p(O,"type","range"),p(O,"min","0"),p(O,"max","100"),p(L,"class","svelte-1rna1na"),p(k,"class","svelte-1rna1na")},m(t,l){g(t,n,l),a(n,r),a(r,o),U(u,o,null),a(o,f),a(o,m),a(o,$),a(o,x),v(x,e[0]),a(r,b),a(r,y);for(let e=0;e<F.length;e+=1)F[e].m(y,null);a(n,C),a(n,k),a(k,_),U(V,_,null),a(_,E),a(_,S),a(_,w),a(_,O),v(O,e[1]),a(k,j),a(k,L);for(let e=0;e<ee.length;e+=1)ee[e].m(L,null);B=!0,N||(T=[h(x,"change",e[6]),h(x,"input",e[6]),h(O,"change",e[7]),h(O,"input",e[7])],N=!0)},p(e,[t]){const n=4&t?A(q,[H(e[2])]):{};if(u.$set(n),1&t&&v(x,e[0]),16&t){let n;for(D=e[4],n=0;n<D.length;n+=1){const r=R(e,D,n);F[n]?F[n].p(r,t):(F[n]=X(r),F[n].c(),F[n].m(y,null))}for(;n<F.length;n+=1)F[n].d(1);F.length=D.length}const r=8&t?A(G,[H(e[3])]):{};if(V.$set(r),2&t&&v(O,e[1]),32&t){let n;for(Z=e[5],n=0;n<Z.length;n+=1){const r=Q(e,Z,n);ee[n]?ee[n].p(r,t):(ee[n]=Y(r),ee[n].c(),ee[n].m(L,null))}for(;n<ee.length;n+=1)ee[n].d(1);ee.length=Z.length}},i(e){B||(W(u.$$.fragment,e),W(V.$$.fragment,e),B=!0)},o(e){z(u.$$.fragment,e),z(V.$$.fragment,e),B=!1},d(e){e&&c(n),M(u),i(F,e),M(V),i(ee,e),N=!1,l(T)}}}function ee(e,t,n){const r={gaugeHeight:300,gaugeWidth:300,gaugeStart:-30,gaugeEnd:210,gaugeScales:27,gaugeUnits:"km/h",gaugeInterval:3,currentValue:0,scaleCoefficient:10,gaugeLimit:270,redzone:21,gaugeOutlineColor:"#444444",gaugeColor:"#ffffff",gaugeBackgroundColor:"linear-gradient(180deg, #444444 0%, #000000 100%)"},l={gaugeHeight:300,gaugeWidth:300,gaugeStart:30,gaugeEnd:210,gaugeScales:90,gaugeUnits:"x1000 rpm",gaugeInterval:10,currentValue:0,scaleCoefficient:.1,gaugeLimit:9e3,redzone:60,gaugeOutlineColor:"#cccccc",gaugeColor:"#555555",gaugeBackgroundColor:"#f1f1f1"},o=(e,t,n)=>(e[n]={name:t[0],value:t[1]},e),u=Object.entries(r).reduce(o,[]),a=Object.entries(l).reduce(o,[]);let{meterValue_01:g=0}=t,{meterValue_02:c=0}=t;return e.$$set=e=>{"meterValue_01"in e&&n(0,g=e.meterValue_01),"meterValue_02"in e&&n(1,c=e.meterValue_02)},e.$$.update=()=>{3&e.$$.dirty&&(n(2,r.currentValue=g,r),n(3,l.currentValue=c,l))},[g,c,r,l,u,a,function(){g=m(this.value),n(0,g)},function(){c=m(this.value),n(1,c)}]}return new class extends q{constructor(e){super(),T(this,e,ee,Z,u,{meterValue_01:0,meterValue_02:1})}}({target:document.body})}();
+
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    function assign(tar, src) {
+        // @ts-ignore
+        for (const k in src)
+            tar[k] = src[k];
+        return tar;
+    }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+    function is_empty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function to_number(value) {
+        return value === '' ? null : +value;
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_input_value(input, value) {
+        input.value = value == null ? '' : value;
+    }
+    function custom_event(type, detail) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, false, false, detail);
+        return e;
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    let flushing = false;
+    const seen_callbacks = new Set();
+    function flush() {
+        if (flushing)
+            return;
+        flushing = true;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            for (let i = 0; i < dirty_components.length; i += 1) {
+                const component = dirty_components[i];
+                set_current_component(component);
+                update(component.$$);
+            }
+            set_current_component(null);
+            dirty_components.length = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        flushing = false;
+        seen_callbacks.clear();
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    let outros;
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function transition_out(block, local, detach, callback) {
+        if (block && block.o) {
+            if (outroing.has(block))
+                return;
+            outroing.add(block);
+            outros.c.push(() => {
+                outroing.delete(block);
+                if (callback) {
+                    if (detach)
+                        block.d(1);
+                    callback();
+                }
+            });
+            block.o(local);
+        }
+    }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+
+    function get_spread_update(levels, updates) {
+        const update = {};
+        const to_null_out = {};
+        const accounted_for = { $$scope: 1 };
+        let i = levels.length;
+        while (i--) {
+            const o = levels[i];
+            const n = updates[i];
+            if (n) {
+                for (const key in o) {
+                    if (!(key in n))
+                        to_null_out[key] = 1;
+                }
+                for (const key in n) {
+                    if (!accounted_for[key]) {
+                        update[key] = n[key];
+                        accounted_for[key] = 1;
+                    }
+                }
+                levels[i] = n;
+            }
+            else {
+                for (const key in o) {
+                    accounted_for[key] = 1;
+                }
+            }
+        }
+        for (const key in to_null_out) {
+            if (!(key in update))
+                update[key] = undefined;
+        }
+        return update;
+    }
+    function get_spread_object(spread_props) {
+        return typeof spread_props === 'object' && spread_props !== null ? spread_props : {};
+    }
+    function create_component(block) {
+        block && block.c();
+    }
+    function mount_component(component, target, anchor, customElement) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        if (!customElement) {
+            // onMount happens before the initial afterUpdate
+            add_render_callback(() => {
+                const new_on_destroy = on_mount.map(run).filter(is_function);
+                if (on_destroy) {
+                    on_destroy.push(...new_on_destroy);
+                }
+                else {
+                    // Edge case - component was destroyed immediately,
+                    // most likely as a result of a binding initialising
+                    run_all(new_on_destroy);
+                }
+                component.$$.on_mount = [];
+            });
+        }
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            on_disconnect: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(parent_component ? parent_component.$$.context : options.context || []),
+            // everything else
+            callbacks: blank_object(),
+            dirty,
+            skip_bound: false
+        };
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, options.props || {}, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if (!$$.skip_bound && $$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                const nodes = children(options.target);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(nodes);
+                nodes.forEach(detach);
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor, options.customElement);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    /**
+     * Base class for Svelte components. Used when dev=false.
+     */
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set($$props) {
+            if (this.$$set && !is_empty($$props)) {
+                this.$$.skip_bound = true;
+                this.$$set($$props);
+                this.$$.skip_bound = false;
+            }
+        }
+    }
+
+    function dispatch_dev(type, detail) {
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.37.0' }, detail)));
+    }
+    function append_dev(target, node) {
+        dispatch_dev('SvelteDOMInsert', { target, node });
+        append(target, node);
+    }
+    function insert_dev(target, node, anchor) {
+        dispatch_dev('SvelteDOMInsert', { target, node, anchor });
+        insert(target, node, anchor);
+    }
+    function detach_dev(node) {
+        dispatch_dev('SvelteDOMRemove', { node });
+        detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
+    }
+    function attr_dev(node, attribute, value) {
+        attr(node, attribute, value);
+        if (value == null)
+            dispatch_dev('SvelteDOMRemoveAttribute', { node, attribute });
+        else
+            dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
+    }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.wholeText === data)
+            return;
+        dispatch_dev('SvelteDOMSetData', { node: text, data });
+        text.data = data;
+    }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
+    function validate_slots(name, slot, keys) {
+        for (const slot_key of Object.keys(slot)) {
+            if (!~keys.indexOf(slot_key)) {
+                console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
+            }
+        }
+    }
+    /**
+     * Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+     */
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error("'target' is a required option");
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn('Component was already destroyed'); // eslint-disable-line no-console
+            };
+        }
+        $capture_state() { }
+        $inject_state() { }
+    }
+
+    /* src\components\SpeedMeter.svelte generated by Svelte v3.37.0 */
+
+    const { Object: Object_1$1 } = globals;
+    const file$1 = "src\\components\\SpeedMeter.svelte";
+
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[19] = list[i];
+    	child_ctx[21] = i;
+    	return child_ctx;
+    }
+
+    // (142:10) {#if i % gaugeInterval === 0}
+    function create_if_block(ctx) {
+    	let span;
+    	let t_value = /*i*/ ctx[21] * /*scaleCoefficient*/ ctx[4] + "";
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			t = text(t_value);
+    			attr_dev(span, "class", "svelte-1eoxkun");
+    			add_location(span, file$1, 141, 39, 4103);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    			append_dev(span, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*scaleCoefficient*/ 16 && t_value !== (t_value = /*i*/ ctx[21] * /*scaleCoefficient*/ ctx[4] + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(142:10) {#if i % gaugeInterval === 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (137:8) {#each Array(gaugeScales + 1) as _,i }
+    function create_each_block$1(ctx) {
+    	let li;
+    	let t;
+    	let li_style_value;
+    	let if_block = /*i*/ ctx[21] % /*gaugeInterval*/ ctx[2] === 0 && create_if_block(ctx);
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			if (if_block) if_block.c();
+    			t = space();
+
+    			attr_dev(li, "style", li_style_value = "\r\n          " + (/*i*/ ctx[21] % /*gaugeInterval*/ ctx[2]
+    			? "--scale-width:3%;"
+    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[21] >= /*redzone*/ ctx[5]
+    			? "--scale-bg:#ff3333;"
+    			: `--scale-bg:${/*gaugeColor*/ ctx[6]};`) + "\r\n          --gauge-tick:" + /*i*/ ctx[21] + ";");
+
+    			attr_dev(li, "class", "svelte-1eoxkun");
+    			add_location(li, file$1, 137, 8, 3873);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			if (if_block) if_block.m(li, null);
+    			append_dev(li, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*i*/ ctx[21] % /*gaugeInterval*/ ctx[2] === 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(li, t);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*gaugeInterval, redzone, gaugeColor*/ 100 && li_style_value !== (li_style_value = "\r\n          " + (/*i*/ ctx[21] % /*gaugeInterval*/ ctx[2]
+    			? "--scale-width:3%;"
+    			: "--scale-width:5%;") + "\r\n          " + (/*i*/ ctx[21] >= /*redzone*/ ctx[5]
+    			? "--scale-bg:#ff3333;"
+    			: `--scale-bg:${/*gaugeColor*/ ctx[6]};`) + "\r\n          --gauge-tick:" + /*i*/ ctx[21] + ";")) {
+    				attr_dev(li, "style", li_style_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(137:8) {#each Array(gaugeScales + 1) as _,i }",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$1(ctx) {
+    	let div2;
+    	let div1;
+    	let div0;
+    	let ol;
+    	let t0;
+    	let aside;
+    	let t1;
+    	let p;
+    	let t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GAUGE_COEFFICIENT*/ ctx[8]) + "";
+    	let t2;
+    	let t3;
+    	let span;
+    	let t4;
+    	let each_value = Array(/*gaugeScales*/ ctx[0] + 1);
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div2 = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			ol = element("ol");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t0 = space();
+    			aside = element("aside");
+    			t1 = space();
+    			p = element("p");
+    			t2 = text(t2_value);
+    			t3 = space();
+    			span = element("span");
+    			t4 = text(/*gaugeUnits*/ ctx[1]);
+    			attr_dev(ol, "class", "svelte-1eoxkun");
+    			add_location(ol, file$1, 135, 6, 3803);
+    			attr_dev(aside, "class", "needle svelte-1eoxkun");
+    			add_location(aside, file$1, 145, 6, 4196);
+    			attr_dev(span, "class", "svelte-1eoxkun");
+    			add_location(span, file$1, 148, 8, 4317);
+    			attr_dev(p, "class", "value svelte-1eoxkun");
+    			add_location(p, file$1, 146, 6, 4234);
+    			attr_dev(div0, "class", "outline svelte-1eoxkun");
+    			add_location(div0, file$1, 134, 4, 3774);
+    			attr_dev(div1, "class", "speedMeter svelte-1eoxkun");
+    			add_location(div1, file$1, 133, 2, 3744);
+    			attr_dev(div2, "class", "speedMeterWrapper svelte-1eoxkun");
+    			attr_dev(div2, "style", /*cssVarStyles*/ ctx[7]);
+    			add_location(div2, file$1, 132, 0, 3686);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div1);
+    			append_dev(div1, div0);
+    			append_dev(div0, ol);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(ol, null);
+    			}
+
+    			append_dev(div0, t0);
+    			append_dev(div0, aside);
+    			append_dev(div0, t1);
+    			append_dev(div0, p);
+    			append_dev(p, t2);
+    			append_dev(p, t3);
+    			append_dev(p, span);
+    			append_dev(span, t4);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*gaugeInterval, redzone, gaugeColor, scaleCoefficient, gaugeScales*/ 117) {
+    				each_value = Array(/*gaugeScales*/ ctx[0] + 1);
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(ol, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (dirty & /*currentValue*/ 8 && t2_value !== (t2_value = Math.floor(/*currentValue*/ ctx[3] * /*GAUGE_COEFFICIENT*/ ctx[8]) + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*gaugeUnits*/ 2) set_data_dev(t4, /*gaugeUnits*/ ctx[1]);
+
+    			if (dirty & /*cssVarStyles*/ 128) {
+    				attr_dev(div2, "style", /*cssVarStyles*/ ctx[7]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div2);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    const OUTLINE_BORDER = 4;
+    const SCALE_HEIGHT = 2;
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("SpeedMeter", slots, []);
+    	
+    	let { gaugeHeight = 200 } = $$props;
+    	let { gaugeWidth = 200 } = $$props;
+    	let { gaugeStart = 0 } = $$props;
+    	let { gaugeEnd = 100 } = $$props;
+    	let { gaugeScales = 10 } = $$props;
+    	let { gaugeUnits = "mph" } = $$props;
+    	let { gaugeInterval = 10 } = $$props;
+    	let { currentValue = 0 } = $$props;
+    	let { scaleCoefficient = 10 } = $$props;
+    	let { gaugeLimit = 100 } = $$props;
+    	let { redzone = 100 } = $$props;
+    	let { gaugeOutlineColor = "#444444" } = $$props;
+    	let { gaugeColor = "#ffffff" } = $$props;
+    	let { gaugeBackgroundColor = "linear-gradient(180deg, #444444 0%, #000000 100%)" } = $$props;
+    	const GAUGE_RANGE = gaugeEnd - gaugeStart;
+    	const GAUGE_COEFFICIENT = gaugeLimit / 100;
+    	const SCALE_ORIGIN = `${gaugeHeight / 2 - OUTLINE_BORDER / 2}px 0px`;
+
+    	/** CSS Variables */
+    	const styles = {
+    		"gauge-height": `${gaugeHeight}px`,
+    		"gauge-width": `${gaugeWidth}px`,
+    		"scale-deg": `${GAUGE_RANGE / gaugeScales}deg`,
+    		"offset-deg": `${gaugeStart}deg`,
+    		"outline-border": `${OUTLINE_BORDER}px`,
+    		"scale-height": `${SCALE_HEIGHT}px`,
+    		"scale-origin": SCALE_ORIGIN,
+    		"meter-deg": "90deg",
+    		"gauge-outline-color": gaugeOutlineColor,
+    		"gauge-color": gaugeColor,
+    		"gauge-background-color": gaugeBackgroundColor
+    	};
+
+    	/** Reactive variables */
+    	let cssVarStyles;
+
+    	const writable_props = [
+    		"gaugeHeight",
+    		"gaugeWidth",
+    		"gaugeStart",
+    		"gaugeEnd",
+    		"gaugeScales",
+    		"gaugeUnits",
+    		"gaugeInterval",
+    		"currentValue",
+    		"scaleCoefficient",
+    		"gaugeLimit",
+    		"redzone",
+    		"gaugeOutlineColor",
+    		"gaugeColor",
+    		"gaugeBackgroundColor"
+    	];
+
+    	Object_1$1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<SpeedMeter> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("gaugeHeight" in $$props) $$invalidate(9, gaugeHeight = $$props.gaugeHeight);
+    		if ("gaugeWidth" in $$props) $$invalidate(10, gaugeWidth = $$props.gaugeWidth);
+    		if ("gaugeStart" in $$props) $$invalidate(11, gaugeStart = $$props.gaugeStart);
+    		if ("gaugeEnd" in $$props) $$invalidate(12, gaugeEnd = $$props.gaugeEnd);
+    		if ("gaugeScales" in $$props) $$invalidate(0, gaugeScales = $$props.gaugeScales);
+    		if ("gaugeUnits" in $$props) $$invalidate(1, gaugeUnits = $$props.gaugeUnits);
+    		if ("gaugeInterval" in $$props) $$invalidate(2, gaugeInterval = $$props.gaugeInterval);
+    		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
+    		if ("scaleCoefficient" in $$props) $$invalidate(4, scaleCoefficient = $$props.scaleCoefficient);
+    		if ("gaugeLimit" in $$props) $$invalidate(13, gaugeLimit = $$props.gaugeLimit);
+    		if ("redzone" in $$props) $$invalidate(5, redzone = $$props.redzone);
+    		if ("gaugeOutlineColor" in $$props) $$invalidate(14, gaugeOutlineColor = $$props.gaugeOutlineColor);
+    		if ("gaugeColor" in $$props) $$invalidate(6, gaugeColor = $$props.gaugeColor);
+    		if ("gaugeBackgroundColor" in $$props) $$invalidate(15, gaugeBackgroundColor = $$props.gaugeBackgroundColor);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		gaugeHeight,
+    		gaugeWidth,
+    		gaugeStart,
+    		gaugeEnd,
+    		gaugeScales,
+    		gaugeUnits,
+    		gaugeInterval,
+    		currentValue,
+    		scaleCoefficient,
+    		gaugeLimit,
+    		redzone,
+    		gaugeOutlineColor,
+    		gaugeColor,
+    		gaugeBackgroundColor,
+    		OUTLINE_BORDER,
+    		SCALE_HEIGHT,
+    		GAUGE_RANGE,
+    		GAUGE_COEFFICIENT,
+    		SCALE_ORIGIN,
+    		styles,
+    		cssVarStyles
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("gaugeHeight" in $$props) $$invalidate(9, gaugeHeight = $$props.gaugeHeight);
+    		if ("gaugeWidth" in $$props) $$invalidate(10, gaugeWidth = $$props.gaugeWidth);
+    		if ("gaugeStart" in $$props) $$invalidate(11, gaugeStart = $$props.gaugeStart);
+    		if ("gaugeEnd" in $$props) $$invalidate(12, gaugeEnd = $$props.gaugeEnd);
+    		if ("gaugeScales" in $$props) $$invalidate(0, gaugeScales = $$props.gaugeScales);
+    		if ("gaugeUnits" in $$props) $$invalidate(1, gaugeUnits = $$props.gaugeUnits);
+    		if ("gaugeInterval" in $$props) $$invalidate(2, gaugeInterval = $$props.gaugeInterval);
+    		if ("currentValue" in $$props) $$invalidate(3, currentValue = $$props.currentValue);
+    		if ("scaleCoefficient" in $$props) $$invalidate(4, scaleCoefficient = $$props.scaleCoefficient);
+    		if ("gaugeLimit" in $$props) $$invalidate(13, gaugeLimit = $$props.gaugeLimit);
+    		if ("redzone" in $$props) $$invalidate(5, redzone = $$props.redzone);
+    		if ("gaugeOutlineColor" in $$props) $$invalidate(14, gaugeOutlineColor = $$props.gaugeOutlineColor);
+    		if ("gaugeColor" in $$props) $$invalidate(6, gaugeColor = $$props.gaugeColor);
+    		if ("gaugeBackgroundColor" in $$props) $$invalidate(15, gaugeBackgroundColor = $$props.gaugeBackgroundColor);
+    		if ("cssVarStyles" in $$props) $$invalidate(7, cssVarStyles = $$props.cssVarStyles);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*currentValue, gaugeStart, styles*/ 67592) {
+    			{
+    				$$invalidate(16, styles["meter-deg"] = `${GAUGE_RANGE / 100 * currentValue + gaugeStart}deg`, styles);
+    				$$invalidate(7, cssVarStyles = Object.entries(styles).map(([key, value]) => `--${key}:${value}`).join(";"));
+    			}
+    		}
+    	};
+
+    	return [
+    		gaugeScales,
+    		gaugeUnits,
+    		gaugeInterval,
+    		currentValue,
+    		scaleCoefficient,
+    		redzone,
+    		gaugeColor,
+    		cssVarStyles,
+    		GAUGE_COEFFICIENT,
+    		gaugeHeight,
+    		gaugeWidth,
+    		gaugeStart,
+    		gaugeEnd,
+    		gaugeLimit,
+    		gaugeOutlineColor,
+    		gaugeBackgroundColor,
+    		styles
+    	];
+    }
+
+    class SpeedMeter extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+    			gaugeHeight: 9,
+    			gaugeWidth: 10,
+    			gaugeStart: 11,
+    			gaugeEnd: 12,
+    			gaugeScales: 0,
+    			gaugeUnits: 1,
+    			gaugeInterval: 2,
+    			currentValue: 3,
+    			scaleCoefficient: 4,
+    			gaugeLimit: 13,
+    			redzone: 5,
+    			gaugeOutlineColor: 14,
+    			gaugeColor: 6,
+    			gaugeBackgroundColor: 15
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "SpeedMeter",
+    			options,
+    			id: create_fragment$1.name
+    		});
+    	}
+
+    	get gaugeHeight() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeHeight(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeWidth() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeWidth(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeStart() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeStart(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeEnd() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeEnd(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeScales() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeScales(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeUnits() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeUnits(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeInterval() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeInterval(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get currentValue() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set currentValue(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get scaleCoefficient() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set scaleCoefficient(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeLimit() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeLimit(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get redzone() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set redzone(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeOutlineColor() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeOutlineColor(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeColor() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeColor(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get gaugeBackgroundColor() {
+    		throw new Error("<SpeedMeter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set gaugeBackgroundColor(value) {
+    		throw new Error("<SpeedMeter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\App.svelte generated by Svelte v3.37.0 */
+
+    const { Object: Object_1 } = globals;
+    const file = "src\\App.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[9] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[9] = list[i];
+    	return child_ctx;
+    }
+
+    // (83:6) {#each meterOptions_01 as option}
+    function create_each_block_1(ctx) {
+    	let tr;
+    	let th;
+    	let t0_value = /*option*/ ctx[9].name + "";
+    	let t0;
+    	let t1;
+    	let td;
+    	let t2_value = /*option*/ ctx[9].value + "";
+    	let t2;
+    	let t3;
+
+    	const block = {
+    		c: function create() {
+    			tr = element("tr");
+    			th = element("th");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			td = element("td");
+    			t2 = text(t2_value);
+    			t3 = space();
+    			attr_dev(th, "class", "svelte-1rna1na");
+    			add_location(th, file, 84, 8, 2100);
+    			attr_dev(td, "class", "svelte-1rna1na");
+    			add_location(td, file, 85, 8, 2132);
+    			add_location(tr, file, 83, 6, 2086);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, tr, anchor);
+    			append_dev(tr, th);
+    			append_dev(th, t0);
+    			append_dev(tr, t1);
+    			append_dev(tr, td);
+    			append_dev(td, t2);
+    			append_dev(tr, t3);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(tr);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(83:6) {#each meterOptions_01 as option}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (98:6) {#each meterOptions_02 as option}
+    function create_each_block(ctx) {
+    	let tr;
+    	let th;
+    	let t0_value = /*option*/ ctx[9].name + "";
+    	let t0;
+    	let t1;
+    	let td;
+    	let t2_value = /*option*/ ctx[9].value + "";
+    	let t2;
+    	let t3;
+
+    	const block = {
+    		c: function create() {
+    			tr = element("tr");
+    			th = element("th");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			td = element("td");
+    			t2 = text(t2_value);
+    			t3 = space();
+    			attr_dev(th, "class", "svelte-1rna1na");
+    			add_location(th, file, 99, 8, 2491);
+    			attr_dev(td, "class", "svelte-1rna1na");
+    			add_location(td, file, 100, 8, 2523);
+    			add_location(tr, file, 98, 6, 2477);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, tr, anchor);
+    			append_dev(tr, th);
+    			append_dev(th, t0);
+    			append_dev(tr, t1);
+    			append_dev(tr, td);
+    			append_dev(td, t2);
+    			append_dev(tr, t3);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(tr);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(98:6) {#each meterOptions_02 as option}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment(ctx) {
+    	let main;
+    	let section0;
+    	let div0;
+    	let speedmeter0;
+    	let t0;
+    	let label0;
+    	let t2;
+    	let input0;
+    	let t3;
+    	let table0;
+    	let t4;
+    	let section1;
+    	let div1;
+    	let speedmeter1;
+    	let t5;
+    	let label1;
+    	let t7;
+    	let input1;
+    	let t8;
+    	let table1;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	const speedmeter0_spread_levels = [/*meterProps_01*/ ctx[2]];
+    	let speedmeter0_props = {};
+
+    	for (let i = 0; i < speedmeter0_spread_levels.length; i += 1) {
+    		speedmeter0_props = assign(speedmeter0_props, speedmeter0_spread_levels[i]);
+    	}
+
+    	speedmeter0 = new SpeedMeter({ props: speedmeter0_props, $$inline: true });
+    	let each_value_1 = /*meterOptions_01*/ ctx[4];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	const speedmeter1_spread_levels = [/*meterProps_02*/ ctx[3]];
+    	let speedmeter1_props = {};
+
+    	for (let i = 0; i < speedmeter1_spread_levels.length; i += 1) {
+    		speedmeter1_props = assign(speedmeter1_props, speedmeter1_spread_levels[i]);
+    	}
+
+    	speedmeter1 = new SpeedMeter({ props: speedmeter1_props, $$inline: true });
+    	let each_value = /*meterOptions_02*/ ctx[5];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			section0 = element("section");
+    			div0 = element("div");
+    			create_component(speedmeter0.$$.fragment);
+    			t0 = space();
+    			label0 = element("label");
+    			label0.textContent = "現在値(0-100固定)";
+    			t2 = space();
+    			input0 = element("input");
+    			t3 = space();
+    			table0 = element("table");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t4 = space();
+    			section1 = element("section");
+    			div1 = element("div");
+    			create_component(speedmeter1.$$.fragment);
+    			t5 = space();
+    			label1 = element("label");
+    			label1.textContent = "現在値(0-100固定)";
+    			t7 = space();
+    			input1 = element("input");
+    			t8 = space();
+    			table1 = element("table");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(label0, "for", "01");
+    			add_location(label0, file, 78, 6, 1893);
+    			attr_dev(input0, "id", "01");
+    			attr_dev(input0, "type", "range");
+    			attr_dev(input0, "min", "0");
+    			attr_dev(input0, "max", "100");
+    			add_location(input0, file, 79, 6, 1937);
+    			add_location(div0, file, 76, 4, 1839);
+    			attr_dev(table0, "class", "svelte-1rna1na");
+    			add_location(table0, file, 81, 4, 2030);
+    			attr_dev(section0, "class", "svelte-1rna1na");
+    			add_location(section0, file, 75, 2, 1824);
+    			attr_dev(label1, "for", "02");
+    			add_location(label1, file, 93, 6, 2284);
+    			attr_dev(input1, "id", "02");
+    			attr_dev(input1, "type", "range");
+    			attr_dev(input1, "min", "0");
+    			attr_dev(input1, "max", "100");
+    			add_location(input1, file, 94, 6, 2328);
+    			add_location(div1, file, 91, 4, 2230);
+    			attr_dev(table1, "class", "svelte-1rna1na");
+    			add_location(table1, file, 96, 4, 2421);
+    			attr_dev(section1, "class", "svelte-1rna1na");
+    			add_location(section1, file, 90, 2, 2215);
+    			add_location(main, file, 74, 0, 1814);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, section0);
+    			append_dev(section0, div0);
+    			mount_component(speedmeter0, div0, null);
+    			append_dev(div0, t0);
+    			append_dev(div0, label0);
+    			append_dev(div0, t2);
+    			append_dev(div0, input0);
+    			set_input_value(input0, /*meterValue_01*/ ctx[0]);
+    			append_dev(section0, t3);
+    			append_dev(section0, table0);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(table0, null);
+    			}
+
+    			append_dev(main, t4);
+    			append_dev(main, section1);
+    			append_dev(section1, div1);
+    			mount_component(speedmeter1, div1, null);
+    			append_dev(div1, t5);
+    			append_dev(div1, label1);
+    			append_dev(div1, t7);
+    			append_dev(div1, input1);
+    			set_input_value(input1, /*meterValue_02*/ ctx[1]);
+    			append_dev(section1, t8);
+    			append_dev(section1, table1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(table1, null);
+    			}
+
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input0, "change", /*input0_change_input_handler*/ ctx[6]),
+    					listen_dev(input0, "input", /*input0_change_input_handler*/ ctx[6]),
+    					listen_dev(input1, "change", /*input1_change_input_handler*/ ctx[7]),
+    					listen_dev(input1, "input", /*input1_change_input_handler*/ ctx[7])
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const speedmeter0_changes = (dirty & /*meterProps_01*/ 4)
+    			? get_spread_update(speedmeter0_spread_levels, [get_spread_object(/*meterProps_01*/ ctx[2])])
+    			: {};
+
+    			speedmeter0.$set(speedmeter0_changes);
+
+    			if (dirty & /*meterValue_01*/ 1) {
+    				set_input_value(input0, /*meterValue_01*/ ctx[0]);
+    			}
+
+    			if (dirty & /*meterOptions_01*/ 16) {
+    				each_value_1 = /*meterOptions_01*/ ctx[4];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(table0, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			const speedmeter1_changes = (dirty & /*meterProps_02*/ 8)
+    			? get_spread_update(speedmeter1_spread_levels, [get_spread_object(/*meterProps_02*/ ctx[3])])
+    			: {};
+
+    			speedmeter1.$set(speedmeter1_changes);
+
+    			if (dirty & /*meterValue_02*/ 2) {
+    				set_input_value(input1, /*meterValue_02*/ ctx[1]);
+    			}
+
+    			if (dirty & /*meterOptions_02*/ 32) {
+    				each_value = /*meterOptions_02*/ ctx[5];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(table1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(speedmeter0.$$.fragment, local);
+    			transition_in(speedmeter1.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(speedmeter0.$$.fragment, local);
+    			transition_out(speedmeter1.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			destroy_component(speedmeter0);
+    			destroy_each(each_blocks_1, detaching);
+    			destroy_component(speedmeter1);
+    			destroy_each(each_blocks, detaching);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("App", slots, []);
+    	
+
+    	const meterProps_01 = {
+    		gaugeHeight: 300,
+    		gaugeWidth: 300,
+    		gaugeStart: -30,
+    		gaugeEnd: 210,
+    		gaugeScales: 27,
+    		gaugeUnits: "km/h",
+    		gaugeInterval: 3,
+    		currentValue: 0,
+    		scaleCoefficient: 10,
+    		gaugeLimit: 270,
+    		redzone: 21,
+    		gaugeOutlineColor: "#444444",
+    		gaugeColor: "#ffffff",
+    		gaugeBackgroundColor: "linear-gradient(180deg, #444444 0%, #000000 100%)"
+    	};
+
+    	const meterProps_02 = {
+    		gaugeHeight: 300,
+    		gaugeWidth: 300,
+    		gaugeStart: 30,
+    		gaugeEnd: 210,
+    		gaugeScales: 90,
+    		gaugeUnits: "x1000 rpm",
+    		gaugeInterval: 10,
+    		currentValue: 0,
+    		scaleCoefficient: 0.1,
+    		gaugeLimit: 9000,
+    		redzone: 60,
+    		gaugeOutlineColor: "#cccccc",
+    		gaugeColor: "#555555",
+    		gaugeBackgroundColor: "#f1f1f1"
+    	};
+
+    	/** Formatting Options */
+    	const reducer = (accumulator, currentValue, index) => {
+    		accumulator[index] = {
+    			name: currentValue[0],
+    			value: currentValue[1]
+    		};
+
+    		return accumulator;
+    	};
+
+    	const meterOptions_01 = Object.entries(meterProps_01).reduce(reducer, []);
+    	const meterOptions_02 = Object.entries(meterProps_02).reduce(reducer, []);
+    	let { meterValue_01 = 0 } = $$props;
+    	let { meterValue_02 = 0 } = $$props;
+    	const writable_props = ["meterValue_01", "meterValue_02"];
+
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
+    	});
+
+    	function input0_change_input_handler() {
+    		meterValue_01 = to_number(this.value);
+    		$$invalidate(0, meterValue_01);
+    	}
+
+    	function input1_change_input_handler() {
+    		meterValue_02 = to_number(this.value);
+    		$$invalidate(1, meterValue_02);
+    	}
+
+    	$$self.$$set = $$props => {
+    		if ("meterValue_01" in $$props) $$invalidate(0, meterValue_01 = $$props.meterValue_01);
+    		if ("meterValue_02" in $$props) $$invalidate(1, meterValue_02 = $$props.meterValue_02);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		SpeedMeter,
+    		meterProps_01,
+    		meterProps_02,
+    		reducer,
+    		meterOptions_01,
+    		meterOptions_02,
+    		meterValue_01,
+    		meterValue_02
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("meterValue_01" in $$props) $$invalidate(0, meterValue_01 = $$props.meterValue_01);
+    		if ("meterValue_02" in $$props) $$invalidate(1, meterValue_02 = $$props.meterValue_02);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*meterValue_01, meterValue_02*/ 3) {
+    			{
+    				$$invalidate(2, meterProps_01["currentValue"] = meterValue_01, meterProps_01);
+    				$$invalidate(3, meterProps_02["currentValue"] = meterValue_02, meterProps_02);
+    			}
+    		}
+    	};
+
+    	return [
+    		meterValue_01,
+    		meterValue_02,
+    		meterProps_01,
+    		meterProps_02,
+    		meterOptions_01,
+    		meterOptions_02,
+    		input0_change_input_handler,
+    		input1_change_input_handler
+    	];
+    }
+
+    class App extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance, create_fragment, safe_not_equal, { meterValue_01: 0, meterValue_02: 1 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "App",
+    			options,
+    			id: create_fragment.name
+    		});
+    	}
+
+    	get meterValue_01() {
+    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set meterValue_01(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get meterValue_02() {
+    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set meterValue_02(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    const app = new App({
+        target: document.body
+    });
+
+    return app;
+
+}());
 //# sourceMappingURL=bundle.js.map
