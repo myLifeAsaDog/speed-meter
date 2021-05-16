@@ -10,9 +10,9 @@ export interface MeterProps {
   scaleCoefficient?: number;      // 目盛りの係数
   gaugeLimit: number;             // メーターの最高値
   redzone?: number;               // レッドゾーン
-  gaugeOutlineColor?: string;     //外枠の色
-  gaugeColor?: string;            //目盛りと文字の色
-  gaugeBackgroundColor?: string;  //背景色
+  gaugeOutlineColor?: string;     // 外枠の色
+  gaugeColor?: string;            // 目盛りと文字の色
+  gaugeBackgroundColor?: string;  // 背景色
 }
 
 export interface StyleProps {
